@@ -37,7 +37,7 @@ mahan19@student.sdu.dk}
 \maketitle
 
 \begin{abstract}
-Multi-drone communication needs to address technical problems that are applicable to different research communities and this project sets out to categorize communication patterns and construct a structured classification, differentiate and examine the effect of mission context on communication pattern, identify data types exchanged in different scenarios, and establish and propose a perspective and standard on what a high-level communication layer for multi-drone missions should contain, synthesized via systematic literature review. This will enable designers to refer to an approach for their specific context.
+Effective coordination in multi-drone missions fundamentally depends on robust and adaptable communication mechanisms. This multi-drone communication needs to address possible challenges that are applicable to different research communities and this project sets out to categorize communication patterns and construct a structured classification, differentiate and examine the effect of mission context on communication pattern, identify data types exchanged in different scenarios, and establish and propose a perspective and standard on what a high-level communication layer for multi-drone missions should contain, synthesized via systematic literature review. This will enable designers to refer to an approach for their specific context.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -48,9 +48,7 @@ Multi drone, UAV swarm, multi-UAV, Communication pattern, Data exchange, Network
 
 \subsection{Research Topic}
 
-Multi-drone missions are assumed to become an increasingly essential part of different industries in a diverse range of applications, such as search and rescue and transporting of goods. This evolution is intertwined with the magnified focus on the quality attributes of its communication patterns; for instance, but not limited to the assumed growing importance of secure communication with and between the drones and growing complexity of efficient communication over the infrastructure and network. This growing relevance can be highlighted in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center. In this context, communication patterns refer to the structured ways in which information is exchanged among agents within the system - including drones and human operators. These patterns describe the directionality of data flow (one-to-one, one-to-many, or many-to-many communication styles) and coordination mechanisms (leader-follower, consensus-based, or peer-to-peer communication) that determine how drones share situational awareness, synchronize actions and make collaborative decisions. Understanding these patterns is crucial for evaluating system performance, scalability, efficiency and security in diverse mission contexts. This research plan will describe how a systematic literature review will be conducted to capture a categorization of communication patterns, data types, agent types and architectural layers across mission contexts in multi-drone deployments.
-
-Single-drone systems are not included since the project is exploring multi-drone systems. Theoretical work will be excluded. Papers that lack technical detail sufficient for categorisation and evaluation are excluded. The validity of a paper will be screened in title and abstract, then full text, then evaluated and argued for or against in team discussion. Subsequently, the mission context, communication patterns, data categories, agent types, architectural layers and reported assessment will be gleaned, then assessed for quality. The synthesized final findings for the project will be conducted following qualitative methods as set out by Petersen et al.\cite{petersen2008}. The categorizations are developed iteratively. This will concretely result in distribution across categories, classification mapping patterns to contexts, common data types per layer, and agent interaction analysis.
+Multi-drone missions are assumed to become an increasingly essential part of different industries in a diverse range of applications, such as search and rescue and transporting of goods. This evolution is intertwined with the magnified focus on the quality attributes of its communication patterns; for instance, but not limited to the assumed growing importance of secure communication with and between the drones and growing complexity of efficient communication over the infrastructure and network. This growing relevance can be highlighted in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center (a reference is needed here, no point of adding before port to latex). In this context, communication patterns refer to the structured ways in which information is exchanged among agents within the system - including drones and human operators. These patterns describe the directionality of data flow (one-to-one, one-to-many, or many-to-many communication styles) and coordination mechanisms (leader-follower, consensus-based, or peer-to-peer communication) that determine how drones share situational awareness, synchronize actions and make collaborative decisions. Understanding these patterns is crucial for evaluating system performance, scalability, efficiency and security in diverse mission contexts. Although, communication is essential, existing literature often focuses on very narrow aspect -- for example, a specific protocol, a single mission type or only one level of system architecture. This research study will aim to capture a categorization of communication patterns, data types, agent types and architectural layers across mission contexts in multi-drone deployments.
 
 \subsection{Problem Area and Research Questions}
 
@@ -78,7 +76,9 @@ Another related research performed with the topic of multi-drone mission with th
 
 \subsection{Planning}
 
-The aforementioned research questions perform at a coarse level a quantitative measurement when compiling literature and ultimately a qualitative analysis when evaluating the classification and proposing the key requirements for communication patterns in a multi-drone mission. This research project will be carrying out systematic literature review following guidelines set out by Kitchenham and Charters \cite{kitchenham2007}, exploring academic databases. Grey literature will also be considered for exploration by following the Multivocal Literature Review subset of SLR approach by Garousi et al.\cite{garousi2019} because, adhering to the nature of its domain, multi-drone systems are present in both academic research and industrial practice. This process is structured and is predefined with search strategies that are focused on transparency and clear inclusion criteria, which will eliminate bias and give way to reproducibility. Furthermore, the categorization will follow the systematic mapping approach explained by Petersen et al \cite{petersen2008}. In this preliminary version of our study, the focus was primarily on peer-reviewed academic literature.
+This research project will be carrying out systematic literature review following guidelines set out by Kitchenham and Charters \cite{kitchenham2007}, exploring academic databases. Grey literature will also be considered for exploration by following the Multivocal Literature Review subset of SLR approach by Garousi et al.\cite{garousi2019} because, adhering to the nature of its domain, multi-drone systems are present in both academic research and industrial practice. This process is structured and is predefined with search strategies that are focused on transparency and clear inclusion criteria, which will eliminate bias and give way to reproducibility. Furthermore, the categorization will follow the systematic mapping approach explained by Petersen et al \cite{petersen2008}. In this preliminary version of our study, the focus was primarily on peer-reviewed academic literature.
+
+Single-drone systems are not included since the project is exploring multi-drone systems. Theoretical work will be excluded. Papers that lack technical detail sufficient for categorisation and evaluation are excluded. The validity of a paper will be screened in title and abstract, then full text, then evaluated and argued for or against in team discussion. Subsequently, the mission context, communication patterns, data categories, agent types, architectural layers and reported assessment will be gleaned, then assessed for quality. The synthesized final findings for the project will be conducted following qualitative methods as set out by Petersen et al.4. The categorizations are developed iteratively. This will concretely result in distribution across categories, classification mapping patterns to contexts, common data types per layer, and agent interaction analysis.
 
 \subsection{Search and Screening}
 
@@ -136,22 +136,9 @@ The most significant aspect of the study being in the preliminary stage means th
 
 \section{Results}
 
-Based on a criteria list, related papers were found by using the selected search keywords as mentioned in the methodology chapter. The criteria items used to select papers were as following:
-
-\begin{itemize}
-\item Multi drone
-\item Describes type data sent and received
-\item Describes type of communication (broadcast, one-to-one)
-\item Describes architecture layer
-\item Specifies mission context (search and rescue, transporting of goods)
-\item In English and from last 10 years
-\end{itemize}
-
-The papers are from the last 10 years and there is a notable concentration in recent years which aligns with the growing interest in multi-drone systems.
-
 After completing reviews and team discussions of the full papers included, there were approximately 20 papers that met the inclusion criteria and contained enough technical detail such that it could be validated and categorised. This represents the included set for the preliminary work-in-progress report. However, this is expected to change for the final draft after: full-text review of borderline cases; conducting snowballing from included papers' references; refining and reapplying the inclusion criteria in a more systematic manner; refining the search strategy with additional keyword combinations after learning more about the vocabulary in this technical field.
 
-\subsection{Findings}
+\subsection{Multi-drone Application Domain}
 
 Based on a review of the selected papers, tendencies in multi-drone missions were established. The type of data being sent and received depends on the type of mission. The type of mission can also include whether the mission is time critical as mentioned in \cite{yanmaz2018}.
 
