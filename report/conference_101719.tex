@@ -11,278 +11,297 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Conference Paper Title*\\
-{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
-should not be used}
-\thanks{Identify applicable funding agency here. If none, delete this.}
-}
+\title{Literature Review of High-Level Communication Patterns for Multi-Drone Missions}
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\author{\IEEEauthorblockN{Jerzy Andrzejewski}
+\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+Odense, Denmark\\
+jeand25@student.sdu.dk}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{Denisa Alicia Rissa}
+\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+Odense, Denmark\\
+deris22@student.sdu.dk}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{Wiktor Poznachowski}
+\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+Odense, Denmark\\
+wipoz25@student.sdu.dk}
 \and
-\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
-\and
-\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
-\and
-\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{Maja Daniela Hansen}
+\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+Odense, Denmark\\
+mahan19@student.sdu.dk}
 }
 
 \maketitle
 
 \begin{abstract}
-This document is a model and instructions for \LaTeX.
-This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
-or Math in Paper Title or Abstract.
+Multi-drone communication needs to address technical problems that are applicable to different research communities and this project sets out to categorize communication patterns and construct a structured classification, differentiate and examine the effect of mission context on communication pattern, identify data types exchanged in different scenarios, and establish and propose a perspective and standard on what a high-level communication layer for multi-drone missions should contain, synthesized via systematic literature review. This will enable designers to refer to an approach for their specific context.
 \end{abstract}
 
 \begin{IEEEkeywords}
-component, formatting, style, styling, insert
+Multi drone, UAV swarm, multi-UAV, Communication pattern, Data exchange, Network architecture
 \end{IEEEkeywords}
 
 \section{Introduction}
-This document is a model and instructions for \LaTeX.
-Please observe the conference page limits. 
 
-\section{Ease of Use}
+\subsection{Research Topic}
 
-\subsection{Maintaining the Integrity of the Specifications}
+Multi-drone missions are assumed to become an increasingly essential part of different industries in a diverse range of applications, such as search and rescue and transporting of goods. This evolution is intertwined with the magnified focus on the quality attributes of its communication patterns; for instance, but not limited to the assumed growing importance of secure communication with and between the drones and growing complexity of efficient communication over the infrastructure and network. This growing relevance can be highlighted in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center. In this context, communication patterns refer to the structured ways in which information is exchanged among agents within the system - including drones and human operators. These patterns describe the directionality of data flow (one-to-one, one-to-many, or many-to-many communication styles) and coordination mechanisms (leader-follower, consensus-based, or peer-to-peer communication) that determine how drones share situational awareness, synchronize actions and make collaborative decisions. Understanding these patterns is crucial for evaluating system performance, scalability, efficiency and security in diverse mission contexts. This research plan will describe how a systematic literature review will be conducted to capture a categorization of communication patterns, data types, agent types and architectural layers across mission contexts in multi-drone deployments.
 
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
+Single-drone systems are not included since the project is exploring multi-drone systems. Theoretical work will be excluded. Papers that lack technical detail sufficient for categorisation and evaluation are excluded. The validity of a paper will be screened in title and abstract, then full text, then evaluated and argued for or against in team discussion. Subsequently, the mission context, communication patterns, data categories, agent types, architectural layers and reported assessment will be gleaned, then assessed for quality. The synthesized final findings for the project will be conducted following qualitative methods as set out by Petersen et al.\cite{petersen2008}. The categorizations are developed iteratively. This will concretely result in distribution across categories, classification mapping patterns to contexts, common data types per layer, and agent interaction analysis.
 
-\section{Prepare Your Paper Before Styling}
-Before you begin to format your paper, first write and save the content as a 
-separate text file. Complete all content and organizational editing before 
-formatting. Please note sections \ref{AA}--\ref{SCM} below for more information on 
-proofreading, spelling and grammar.
+\subsection{Problem Area and Research Questions}
 
-Keep your text and graphic files separate until after the text has been 
-formatted and styled. Do not number text heads---{\LaTeX} will do that 
-for you.
+Multi-drone communication needs to address technical problems that are applicable to different research communities. Important considerations comprise of the types of data that need to be exchanged, the communication patterns (broadcast, one-to-one, etc.) that are best suited for the mission context, the type of agents (drones, other autonomous agents, human agents) and their respective roles, and the architecture layers wherein communication occurs.
 
-\subsection{Abbreviations and Acronyms}\label{AA}
-Define abbreviations and acronyms the first time they are used in the text, 
-even after they have been defined in the abstract. Abbreviations such as 
-IEEE, SI, MKS, CGS, ac, dc, and rms do not have to be defined. Do not use 
-abbreviations in the title or heads unless they are unavoidable.
+\textbf{RQ1:} What types of communication patterns (e.g. broadcast, one-to-one, etc.) are used in multi-drone missions; how do these patterns relate to the mission context, and reciprocally, what implications do the mission context have for the required communication patterns?
 
-\subsection{Units}
+\textbf{RQ2:} What categories of data are sent and received in multi-drone missions; how does this data type vary with architectural layers and mission contexts?
+
+\textbf{RQ3:} What types of agents are involved in multi-drone mission communications and what do they do?
+
+\textbf{RQ4:} What components should be included in a high-level communication layer for multi-drone missions? Based on the identified patterns, what are the key requirements and governing design principles for multi-drone systems?
+
+\section{Related Work}
+
+\subsection{Relevant Reviews}
+
+There have been published several studies and literary reviews on the general topic of drones. When narrowing the focus down to multi-drone missions with the specific topic of communication, the number of available research papers becomes significantly lower. Furthermore, many of the research papers focus only on drones from a certain perspective like nature disaster or agriculture which can limit their relevance.
+
+One relevant literary review explores multi-drones with the aspect of using drone communication to reach the UN's sustainable development goals \cite{gryech2024}. This review explores the aspect of drone communication but with the focus on societal impact rather than high level communication patterns. It can provide valuable insight but does not provide a full picture.
+
+Another related research performed with the topic of multi-drone mission with the focus on communication is a Survey on communications strategies for multi-drone missions \cite{pantelimon2019}. It covers the same topics of the mission context, communication patterns, data categories, agent types and architectural layers. The architectural layers are discussed in terms of centralized and decentralized architecture.
+
+\section{Research Methodology}
+
+\subsection{Planning}
+
+The aforementioned research questions perform at a coarse level a quantitative measurement when compiling literature and ultimately a qualitative analysis when evaluating the classification and proposing the key requirements for communication patterns in a multi-drone mission. This research project will be carrying out systematic literature review following guidelines set out by Kitchenham and Charters \cite{kitchenham2007}, exploring academic databases. Grey literature will also be considered for exploration by following the Multivocal Literature Review subset of SLR approach by Garousi et al.\cite{garousi2019} because, adhering to the nature of its domain, multi-drone systems are present in both academic research and industrial practice. This process is structured and is predefined with search strategies that are focused on transparency and clear inclusion criteria, which will eliminate bias and give way to reproducibility. Furthermore, the categorization will follow the systematic mapping approach explained by Petersen et al \cite{petersen2008}. In this preliminary version of our study, the focus was primarily on peer-reviewed academic literature.
+
+\subsection{Search and Screening}
+
+The search terms will encompass terminology for multi-drone systems ("multi-drone", "UAV swarm", "multi-UAV", etc.) and communication ("communication pattern", "data exchange", "network architecture"). Additionally, Boolean operators were used to combine them. The final search terms and conducted technique in the project will be elaborated when preliminary documents have been acquired, similarly with the following inclusion criteria of literature: (1) involve one or two more drones, (2) describe communication with agents, (3) specify mission context, (4) specify technical details, (5) are in English and are from the last 10 years.
+
+The exploratory search for literature was conducted using Google Scholar and the SDU Library interfaces as our primary source using the aforementioned search terms. The final systemic review specifically and directly may utilize other relevant academic databases, such as IEE Xplore, ACM Digital Library, Scopus and Web of Science; however, for the scope of the preliminary study, the aggregative nature of Google Scholar and SDU Library was relevant for exploration of the methodology.
+
+For the preliminary draft of the study, the initial search strategy was broadly defined, and this resulted in an uncertain number of potentially relevant papers which also required screening. This experience and the reflections developed from it are useful for more extensive pilot searching to test and refine search strings, which can improve efficiency.
+
+Additionally, systemic backward and forward snowballing from the papers' references was not yet implemented as a strategy, which likely led to missing studies that are useful for the final study.
+
+\subsection{Study Selection Process}
+
+The inclusion and exclusion criteria which formed the study selection process evolved with more knowledge gained from our initial exploratory searches. Alongside the inclusion criteria previously mentioned, the exclusion criteria included: single-drone systems; purely theoretical work without implementation or validation context; papers lacking sufficient technical detail (e.g. about communication and architecture layers) for meaningful categorisation; duplicated studies reported in multiple papers; non-peer-reviewed publications i.e. literature, although this is initially and eventually planned for inclusion.
+
+There were three main phases of literature selection:
+
+\begin{enumerate}
+\item \textbf{Initial search and broad screening:} the group members individually searched Google Scholar and the SDU Library with the keyword combinations and search terms, reviewing titles and abstracts to create an initial pool of potentially relevant papers. During this phase, the inclusion criteria was applied somewhat liberally to avoid prematurely excluding relevant work; this broad initial approach was important for understanding the research landscape before refining the criteria.
+
+\item \textbf{Full paper review:} After "passing" the initial screening, the full paper was read in detail, and a stricter interpretation of the inclusion criteria was applied regarding the sufficiency around technical detail.
+
+\item \textbf{Team discussion and refinement:} All potentially included papers were discussed within the team; the collaborative review process helped address individual screening inconsistencies and resolve any edge cases. Discussion also helped to refine understanding of the ambiguous criteria, in particular, the "architecture layer" requirement as specified by the research topic.
+\end{enumerate}
+
+\subsection{Quality Assessment}
+
+To ensure transparency, a quality assessment checklist was defined. The quality of each paper was assessed based on relevance, clarity of method description, empirical evaluation, rigorousness and reproducibility. Each criterion was scored on 3 step scale (0-low, 1-medium, 2-high). Papers having an average score below 1.5 were excluded. Reliability was ensured by doing an independent assessment by at least two group members. Any discrepancies were later discussed until consensus was reached. The purpose of this assessment was not only to filter low-quality papers, but also to understand the strong and weak sides of each study.
+
+\subsection{Data Extraction, Synthesis and Categorisation Framework}
+
+Following the systematic mapping guidelines, we considered a data extraction framework for categorization in order to answer our research questions.
+
+The categorisation maps information across five of the specified dimensions:
+
+\begin{enumerate}
+\item Mission context
+\item Communication Patterns
+\item Data types
+\item Agent types and roles
+\item Architectural layers
+\end{enumerate}
+
+\subsection{Validity Threats}
+
+There are several threats to the validity of the study, especially due to the manner of process in its current preliminary form.
+
+In regard to internal validity, the lack of strictly systematic application of inclusion and exclusion criteria during the initial screening phase implies a resulting subjectivity which can also in turn cause potential inconsistencies in data extraction across the individual team members' judgement. Additionally, because this exploratory search evolved the criteria and our understanding of it over time, this discrepancy can cause inconsistencies through the duration of our review. In order to mitigate this, regular concurrent team discussions were held to align our understanding with one another, and where there were borderline cases in which subjectivity were most likely to affect our discrimination more, this was also reviewed collaboratively. The rationale of the decisions made is documented underway for present and future evaluation.
+
+For external validity, the limited sourcing of papers from Google Scholar and the SDU library meant that papers that are only indexed in specialized databases may be missed. The imposed inclusion criteria of the English language and 10-year timeframe critically means that there is a potential geographic and cultural bias, as well as the exclusion of potential seminal earlier work. This limitation is acknowledged in this paper, as well as the transparency of the exclusive search strategy in its potential to induce bias. Because there is an increasing interest in the field the peer reviewed literature focus may also mean that industry reports and technical documentation which may be much more accelerated in its progress than academic sources, means that this excludes potential key sources relevant to the literature review. As mentioned, the scope of included literature will be expanded for the final study, including supplementing with snowballing.
+
+When considering the methodology of the study and the construct validity, the categorisation framework might fail to include all of the relevant dimensions; this we had drawn strictly from the specified topic, and the definitions of categories such as "architectural layer" were arguably ambiguous and due to the level of expertise within the team on the topic, this required exploratory reading to understand before refinement. Due to the potentially ambiguous semantics, there is a risk that the papers may be forced into categories that don't necessarily align with the authors' framing. The papers can span multiple categories in order to take into account the multi-faceted nature of academic literature contexts. The process of iteratively refining categories and documenting the growth of our understanding and evolutions is ultimately important for the final study.
+
+The most significant aspect of the study being in the preliminary stage means that our synthesis and mapping is ultimately incomplete, and the small sample size is a critical limiter in how valid the generalised patterns are. Incorrect premature conclusions lacking evidence can be made before completing a rigorous enough conclusion. It is in turn an important acknowledgement that the study is intended to clearly communicate its method and results as a work-in-progress, and clarify the caveats on any preliminary findings, as well as elaborate on future plans for the final analysis.
+
+\section{Results}
+
+Based on a criteria list, related papers were found by using the selected search keywords as mentioned in the methodology chapter. The criteria items used to select papers were as following:
+
 \begin{itemize}
-\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
-\item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
-\item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
-\item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
+\item Multi drone
+\item Describes type data sent and received
+\item Describes type of communication (broadcast, one-to-one)
+\item Describes architecture layer
+\item Specifies mission context (search and rescue, transporting of goods)
+\item In English and from last 10 years
 \end{itemize}
 
-\subsection{Equations}
-Number equations consecutively. To make your 
-equations more compact, you may use the solidus (~/~), the exp function, or 
-appropriate exponents. Italicize Roman symbols for quantities and variables, 
-but not Greek symbols. Use a long dash rather than a hyphen for a minus 
-sign. Punctuate equations with commas or periods when they are part of a 
-sentence, as in:
-\begin{equation}
-a+b=\gamma\label{eq}
-\end{equation}
+The papers are from the last 10 years and there is a notable concentration in recent years which aligns with the growing interest in multi-drone systems.
 
-Be sure that the 
-symbols in your equation have been defined before or immediately following 
-the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
-the beginning of a sentence: ``Equation \eqref{eq} is . . .''
+After completing reviews and team discussions of the full papers included, there were approximately 20 papers that met the inclusion criteria and contained enough technical detail such that it could be validated and categorised. This represents the included set for the preliminary work-in-progress report. However, this is expected to change for the final draft after: full-text review of borderline cases; conducting snowballing from included papers' references; refining and reapplying the inclusion criteria in a more systematic manner; refining the search strategy with additional keyword combinations after learning more about the vocabulary in this technical field.
 
-\subsection{\LaTeX-Specific Advice}
+\subsection{Findings}
 
-Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
-of ``hard'' references (e.g., \verb|(1)|). That will make it possible
-to combine sections, add equations, or change the order of figures or
-citations without having to go through the file line by line.
+Based on a review of the selected papers, tendencies in multi-drone missions were established. The type of data being sent and received depends on the type of mission. The type of mission can also include whether the mission is time critical as mentioned in \cite{yanmaz2018}.
 
-Please don't use the \verb|{eqnarray}| equation environment. Use
-\verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
-environment leaves unsightly spaces around relation symbols.
+The multi-drone communication research spans multiple application domains, although there is more focus on certain topics:
 
-Please note that the \verb|{subequations}| environment in {\LaTeX}
-will increment the main equation counter even when there are no
-equation numbers displayed. If you forget that, you might write an
-article in which the equation numbers skip from (17) to (20), causing
-the copy editors to wonder if you've discovered a new method of
-counting.
+\textbf{Search and rescue:} This was the most frequently studied mission context in the included papers. These scenarios are time-critical, need rapid coordination, operation in environments with potentially damaged infrastructure, and requirements for human-drone interaction, which presents a communication challenge.
 
-{\BibTeX} does not work by magic. It doesn't get the bibliographic
-data from thin air but from .bib files. If you use {\BibTeX} to produce a
-bibliography you must send the .bib files. 
+\textbf{Surveillance and monitoring:} Coordinated missions involving surveillance are addressed in several papers. The specific contexts include monitoring of perimeters in security applications; monitoring of wildlife and observation of the environment; inspection of infrastructure carried out by drones, such as bridges, power lines and pipelines; and monitoring of agriculture.
 
-{\LaTeX} can't read your mind. If you assign the same label to a
-subsubsection and a table, you might find that Table I has been cross
-referenced as Table IV-B3. 
+\textbf{Goods delivery and transportation:} Several papers investigate the communication patters for drone delivery systems. The challenges involved include coordination of routes, protocols for package handoffs, and integrating with logistics systems on-ground.
 
-{\LaTeX} does not have precognitive abilities. If you put a
-\verb|\label| command before the command that updates the counter it's
-supposed to be using, the label will pick up the last counter to be
-cross referenced instead. In particular, a \verb|\label| command
-should not go before the caption of a figure or a table.
+\textbf{Defence and security applications:} The studies included that investigate multi-drone coordination for defence contexts provide less technical detail about the specifics of communication, and this is due to complications around security.
 
-Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
-will not stop equation numbers inside \verb|{array}| (there won't be
-any anyway) and it might stop a wanted equation number in the
-surrounding equation.
+\textbf{Research and scientific data collection:} Drone swarms are described for collecting data of the environment, mapping, and missions involving scientific observation.
 
-\subsection{Some Common Mistakes}\label{SCM}
-\begin{itemize}
-\item The word ``data'' is plural, not singular.
-\item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
-\item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
-\item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
-\item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
-\item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
-\item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
-\item Do not confuse ``imply'' and ``infer''.
-\item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
-\item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
-\item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
-\end{itemize}
-An excellent style manual for science writers is \cite{b7}.
+\textbf{Industrial applications:} there is a small number of papers addressing industrial contexts indoors i.e. warehouse or factory inventory management or inspection. Due to the indoor environment and "terrain" as well as proximity to machinery, there are different communication constraints to outdoor missions.
 
-\subsection{Authors and Affiliations}
-\textbf{The class file is designed for, but not limited to, six authors.} A 
-minimum of one author is required for all conference articles. Author names 
-should be listed starting from left to right and then moving down to the 
-next line. This is the author sequence that will be used in future citations 
-and by indexing services. Names should not be listed in columns nor group by 
-affiliation. Please keep your affiliations as succinct as possible (for 
-example, do not differentiate among departments of the same organization).
+Some papers discussed design for multiple mission contexts; there is a growing interest in generalizing communication frameworks.
 
-\subsection{Identify the Headings}
-Headings, or heads, are organizational devices that guide the reader through 
-your paper. There are two types: component heads and text heads.
+The need for drones to be able to send information seems to be crucial no matter the type of mission context. A general term used for drone information is message. As stated by \cite{yanmaz2018} a message can include image, flying altitude, GPS position and other similar data.
 
-Component heads identify the different components of your paper and are not 
-topically subordinate to each other. Examples include Acknowledgments and 
-References and, for these, the correct style to use is ``Heading 5''. Use 
-``figure caption'' for your Figure captions, and ``table head'' for your 
-table title. Run-in heads, such as ``Abstract'', will require you to apply a 
-style (in this case, italic) in addition to the style provided by the drop 
-down menu to differentiate the head from the text.
+Another general term used for drone information being sent is the sensed data \cite{gryech2024} a sensing data can be a camera providing images or videos \cite{gryech2024}. These can either be real time or offline saved whether the mission is time-critical or not \cite{gryech2024}.
 
-Text heads organize the topics on a relational, hierarchical basis. For 
-example, the paper title is the primary text head because all subsequent 
-material relates and elaborates on this one topic. If there are two or more 
-sub-topics, the next level head (uppercase Roman numerals) should be used 
-and, conversely, if there are not at least two sub-topics, then no subheads 
-should be introduced.
+The type of multi-drone missions varies from among others construction and Search and rescue (SAR) \cite{xing2022}. The primary one being mentioned in multi-drone missions were SAR \cite{xing2022}\cite{ho2022}\cite{chandran2024}.
 
-\subsection{Figures and Tables}
-\paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
-bottom of columns. Avoid placing them in the middle of columns. Large 
-figures and tables may span across both columns. Figure captions should be 
-below the figures; table heads should appear above the tables. Insert 
-figures and tables after they are cited in the text. Use the abbreviation 
-``Fig.~\ref{fig}'', even at the beginning of a sentence.
+\subsection{Communication Patterns}
 
-\begin{table}[htbp]
-\caption{Table Type Styles}
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
-\cline{2-4} 
-\textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
-\hline
-copy& More table copy$^{\mathrm{a}}$& &  \\
-\hline
-\multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
-\end{tabular}
-\label{tab1}
-\end{center}
-\end{table}
+Our categorization identified the different types of communication topologies and mechanisms of coordination that are described in the literature about multi-drone systems.
 
-\begin{figure}[htbp]
-\centerline{\includegraphics{fig1.png}}
-\caption{Example of a figure caption.}
-\label{fig}
-\end{figure}
+\textbf{Broadcast communication:} this pattern appears in swarm behaviours with coordinated behaviour, propagating emergency alerts, and coordinating during mission startup. These systems include drones that broadcast information such as position updates and sensor readings to all nearby agents.
 
-Figure Labels: Use 8 point Times New Roman for Figure labels. Use words 
-rather than symbols or abbreviations when writing Figure axis labels to 
-avoid confusing the reader. As an example, write the quantity 
-``Magnetization'', or ``Magnetization, M'', not just ``M''. If including 
-units in the label, present them within parentheses. Do not label axes only 
-with units. In the example, write ``Magnetization (A/m)'' or ``Magnetization 
-\{A[m(1)]\}'', not just ``A/m''. Do not label axes with a ratio of 
-quantities and units. For example, write ``Temperature (K)'', not 
-``Temperature/K''.
+\textbf{Point-to-point:} otherwise describe as "unicast" or "one-to-one" communication, this direct communication between agents appears in task-specific data exchange, human operator with individual drone, drone-to-drone protocol negotiation, leader-follower coordination
 
-\section*{Acknowledgment}
+\textbf{Hierarchal patterns:} Leader-follower and master-slave architectures are described where there is a leader of "subordinate drones" or ground station as central controller, or hierarchal clusters where the cluster "leaders" aggregate information. This pattern is especially noticeable in missions where there is a need for centralized decision making, or clear command structures.
 
-The preferred spelling of the word ``acknowledgment'' in America is without 
-an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
-G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
-acknowledgments in the unnumbered footnote on the first page.
+\textbf{Peer-to-peer (distributed):} Drones exchange information in a distributed manner without centralised coordination. This appears in swarm behaviours prioritizing resilience, availability and preventing individual failures; consensus-based decision protocols; and self-organizing formations.
 
-\section*{References}
+\textbf{Hybrid:} more complex missions or systems can employ multiple patterns, such as hierarchal for command/control but switching to peer-to-peer for local coordination; broadcast for awareness then direct for detailed data exchange; and switching based on mission phase or conditions in the environment.
 
-Please number citations consecutively within brackets \cite{b1}. The 
-sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
-number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
-the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
+The preliminary observations suggest that the mission context influences pattern selection; time critical missions use more centralized patterns for rapid coordination. Longer missions prioritize distributed approaches for resilience. However, these relationships need to be validated with further systematic analysis.
 
-Number footnotes separately in superscripts. Place the actual footnote at 
-the bottom of the column in which it was cited. Do not put footnotes in the 
-abstract or reference list. Use letters for table footnotes.
+\subsection{Data Types and Information Exchange}
 
-Unless there are six authors or more give all authors' names; do not use 
-``et al.''. Papers that have not been published, even if they have been 
-submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
-that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
-Capitalize only the first word in a paper title, except for proper nouns and 
-element symbols.
+Data exchanged in multi-drone communications was analysed and categorised.
 
-For papers published in translation journals, please give the English 
-citation first, followed by the original foreign-language citation \cite{b6}.
+\textbf{Telemetry and status data:} positioning (e.g. GPS coordinates, altitude); velocity; battery level, remaining flight time; sensor status like system health. This is applied in pretty much every mission context.
+
+\textbf{Sensor and perception data:} Camera images and video streams; environmental sensor readings e.g. humidity, temperature, chemical detection; LIDAR point clouds, radar returns. The amount and frequency of this data very significantly vary with the context of the mission. Search and rescue operations might require high-resolution real-time video, but missions that only need to monitor might need to transmit a snapshot occasionally.
+
+\textbf{Command and control messages:} Mission waypoints and navigation commands, task assignments and role allocations, mode changes, emergency stop and safety commands.
+
+\textbf{Mission specific payload data:} package delivery confirmation, target detection notifications, survey results and processed analysis, event triggers and alerts.
+
+\textbf{Coordination and negotiation data:} "bidding" for allocation of tasks, auction bids (bidding on a task based on position, proximity, resources and capabilities in regards to task and "winning" with the best bid according to the criteria), consensus protocol messages, warnings for avoiding collision, and control vectors.
+
+Data types probably correlate with both mission context and architectural layers. Telemetry is more often at high frequency through lower layers; processed mission results less so at application layers. Since our data extraction is incomplete, more systematic analysis is needed to verify this.
+
+\subsection{Agent Types and Interaction Patterns}
+
+Multi-drone systems can have different types of agents in addition to the drones.
+
+\textbf{Drone-to-drone communication:} this interaction happens in coordinated swarms. This includes: direct drone to drone data exchange; cooperative sensing and information sharing; collision avoidance coordination; negotiation for tasks
+
+\textbf{Drone to human operator:} Manual piloting of individual drones; supervision of mission but with autonomous execution; ability to take over during an emergency; situational awareness displays that show the swarm status.
+
+\textbf{Drone to ground station or base:} Communication with fixed infrastructure, including mission upload and configuration of parameters, telemetry logging and monitoring, charging and service coordination and long-range communication relay.
+
+\textbf{Drone to other autonomous systems:} Some papers describe integration with autonomous vehicles on the ground, fixed sensor networks, and other aerial platforms such as manned aircraft and balloons.
+
+\textbf{Role based:} Aside from the physical type of agents, the papers also often describe the functional roles, such as leaders and followers in hierarchal systems; scouts, workers and coordinators in task allocated systems; and primary operators and supervisory controllers in human drone teams.
+
+The early observation is that mission complexity and scale are correlated with agent diversity. Simple missions might only need a single operator for multiple drones. More complex missions have multiple agent types with specialised roles.
+
+\subsection{Architectural Layer Considerations}
+
+There was an initial ambiguity in the criteria definition of "architectural layer". The understanding is drawn from the papers that address communication at different abstraction levels.
+
+\textbf{Physical/link layer:} radio frequency selection and management; antenna design and directionality; channel access protocols; error correction and reliability mechanisms
+
+\textbf{Network and routing layer:} Multi-hop routing in drone networks; network topology management; quality of service mechanisms; network resilience and failure recovery
+
+\textbf{Middleware and abstraction layers:} publish and subscribe messaging systems; service-oriented architectures, data distribution services. Api abstractions for developers
+
+\textbf{Application layer:} Mission specific protocols; data fusion algorithms; coordination strategies; human interface designs.
+
+An important preliminary finding is that multi-drone communication more often needs to be designed to be cross-layer if it is to be done effectively. Decisions at one layer e.g. application layer coordination influences requirements at other layers e.g. network routing in support of coordination patterns.
+
+\subsection{Emerging Preliminary Patterns}
+
+\textbf{Time criticality and communication:} missions with real-time requirements and that are urgent, like search and rescue, tend to have more structured communication patterns and latencies that can be more predicated. Monitoring missions that do not have this urgency have better tolerance.
+
+\textbf{Scale and architecture:} Small drone teams use more centralised or hierarchical patterns. Larger drones use more distributed patterns so that there are not bottlenecks in communication.
+
+\textbf{Environment and infrastructure:} Areas with damaged infrastructure or indoor missions have different communication strategies than outdoor missions that have reliable ground station connectivity.
+
+\textbf{Autonomy and amount of data:} Systems that are more autonomous exchange less command data but more perception and awareness data. There is the opposite pattern with systems that are remotely piloted.
+
+These are preliminary findings and need a larger sample before solid conclusions can be drawn.
+
+\section{Discussion}
+
+\subsection{Assessment of Screening Process}
+
+The research showed that most papers on multi-drone missions are recent since they were published within the last 10 years, which is considered a strength. Drones as well as multi-drone hardware and software are assumed to be built on rapidly growing technologies. Therefore, recent papers are more relevant and provide more accurate insight into multi-drone missions. Especially in terms of communication because software and hardware changes are assumed to have a great impact on how well communication is performed in a multi-drone mission. Older studies might take ground in outdated technologies. An accurate insight into drone security is assumed to be crucial with the fact that drones are being used in hybrid wars \cite{tv2_2025}. This could lead to the need to update the security of drone communication and networks. This could, for instance, have an impact on the data being sent or received, which would have to be encrypted.
+
+Another reason why recent papers are better is that the rules around drone flight are assumed to become more restrictive, especially with the fact mentioned previously about drones being used in hybrid wars. This means that older studies might not be able to replicate.
+
+It was decided to only accept papers written in English, if the paper search was expanded to multiple languages, it could have yielded in a boarder search and avoided a potential loss in valuable findings. Another factor is that it can raise geographical bias when only accepting English papers.
+
+The screening criteria regarding the requirement of the paper to describe the architecture was faulty due to missing knowledge on how the term architecture is defined in this context of multi-drone missions. Architecture could, for instance, be about software, communication, or networks. This could potentially lead to studies being included or excluded from the review without the proper reason. A specification of the architecture should have been clearly defined before the paper screening to avoid this.
+
+\section{Conclusion}
+
+Papers regarding multi-drone communication patterns often are regarding a specific topic, but can provide valuable information. Search and rescue in particular is a dominating research context. The communication patterns are varied and range from hierarchal to completely peer-to-peer; the data types range telemetry, sensor feeds and mission-specific information; complex systems often involve multiple agent types alongside drones. The tentative finding of the draft study suggest that there is a relationship between mission characteristics and the appropriate communication approaches; for example, this can depend on time-criticality, scale and environment.
+
+When performing a screening process, it is deemed crucial to properly specify the screening criteria. The exploratory search strategy was less efficient than it could have been and the screening process was prone to inconsistencies before it was calibrated after evaluation; and the categorization criteria needed to be refined iteratively.
+
+The continuation of this study will include a more comprehensive screening and data extraction, conducting snowballing to increase coverage further systematically analysing relationships between categories, and defining a recommendation for designing communication architectures in multi-drone systems.
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\bibitem{gryech2024} I. Gryech, E. Vinogradov, A. Saboor, P. S. Bithas, P. T. Mathiopoulos, and S. Pollin, ``A systematic literature review on the role of UAV-enabled communications in advancing the UN's sustainable development goals,'' \textit{Frontiers in communications and networks}, vol. 5, 2024, doi: 10.3389/frcmn.2024.1286073.
+
+\bibitem{pantelimon2019} G. Pantelimon, K. Tepe, R. Carriveau, and S. Ahmed, ``Survey of Multi-agent Communication Strategies for Information Exchange and Mission Control of Drone Deployments,'' \textit{Journal of intelligent \& robotic systems}, vol. 95, no. 3–4, pp. 779–788, 2019, doi: 10.1007/s10846-018-0812-x.
+
+\bibitem{paula2019} N. Paula, B. Areias, A. B. Reis, and S. Sargento, ``Multi-drone Control with Autonomous Mission Support,'' in \textit{2019 IEEE International Conference on Pervasive Computing and Communications Workshops (PerCom Workshops)}, IEEE, 2019, pp. 918–923. doi: 10.1109/PERCOMW.2019.8730844.
+
+\bibitem{yanmaz2018} E. Yanmaz, S. Yahyanejad, B. Rinner, H. Hellwagner, and C. Bettstetter, ``Drone networks: Communications, coordination, and sensing,'' \textit{Ad hoc networks}, vol. 68, pp. 1–15, 2018, doi: 10.1016/j.adhoc.2017.09.001.
+
+\bibitem{castrillo2024} V. U. Castrillo, D. Pascarella, G. Pigliasco, I. Iudice, and A. Vozella, ``Learning-in-Games Approach for the Mission Planning of Autonomous Multi-Drone Spatio-Temporal Sensing,'' \textit{IEEE access}, vol. 12, pp. 77586–77604, 2024, doi: 10.1109/ACCESS.2024.3406133.
+
+\bibitem{awasthi2023} S. Awasthi et al., ``Micro UAV Swarm for industrial applications in indoor environment: A systematic literature review,'' \textit{Logistics research}, vol. 16, no. 1, pp. 1–43, 2023, doi: 10.23773/2023\_11.
+
+\bibitem{ho2022} Y.-H. Ho and Y.-J. Tsai, ``Open Collaborative Platform for Multi-Drones to Support Search and Rescue Operations,'' \textit{Drones (Basel)}, vol. 6, no. 5, p. 132, 2022, doi: 10.3390/drones6050132.
+
+\bibitem{chandran2024} I. Chandran and K. Vipin, ``Multi-UAV Networks for Disaster Monitoring: Challenges and Opportunities from a Network Perspective,'' \textit{Drone systems and applications}, vol. 12, no. ja, pp. 1–28, 2024, doi: 10.1139/dsa-2023-0079.
+
+\bibitem{xing2022} L. Xing et al., ``Multi-UAV cooperative system for search and rescue based on YOLOv5,'' \textit{International journal of disaster risk reduction}, vol. 76, Art. no. 102972, 2022, doi: 10.1016/j.ijdrr.2022.102972.
+
+\bibitem{phadke2022} A. Phadke and F. A. Medrano, ``Towards Resilient UAV Swarms—A Breakdown of Resiliency Requirements in UAV Swarms,'' \textit{Drones (Basel)}, vol. 6, no. 11, p. 340, 2022, doi: 10.3390/drones6110340.
+
+\bibitem{wu2025} H. Wu, H. Sun, K. Ji, and G. Kuang, ``Temporal-Spatial Feature Interaction Network for Multi-Drone Multi-Object Tracking,'' \textit{IEEE transactions on circuits and systems for video technology}, vol. 35, no. 2, pp. 1165–1179, 2025, doi: 10.1109/TCSVT.2024.3478758.
+
+\bibitem{tv2_2025} ``Danmark står over for hybride trusler – og droner er bare et værktøj,'' TV 2 Nyheder, 26 Sep. 2025. [Online]. Available: https://nyheder.tv2.dk/samfund/2025-09-25-danmark-staar-over-for-hybride-trusler-og-droner-er-bare-et-vaerktoej. [Accessed: 24 Nov. 2025].
+
+\bibitem{garousi2019} V. Garousi, M. Felderer, and M. V. Mäntylä, ``Guidelines for including grey literature and conducting multivocal literature reviews in software engineering,'' \textit{Information and software technology}, vol. 106, pp. 101-121, 2019.
+
+\bibitem{kitchenham2007} B. Kitchenham and S. Charters, ``Guidelines for performing systematic literature reviews in software engineering,'' Technical Report EBSE-2007-01, Keele University and University of Durham, 2007.
+
+\bibitem{petersen2008} K. Petersen, R. Feldt, S. Mujtaba, and M. Mattsson, ``Systematic mapping studies in software engineering,'' in \textit{12th international conference on evaluation and assessment in software engineering (EASE)}, BCS Learning \& Development, June 2008.
+
 \end{thebibliography}
-\vspace{12pt}
-\color{red}
-IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
 
 \end{document}
