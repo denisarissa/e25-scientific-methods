@@ -46,11 +46,11 @@ Multi drone, UAV swarm, multi-UAV, Communication pattern, Data exchange, Network
 
 \section{Introduction}
 
-\subsection{Research Topic}
+\subsection{\centering Research Topic}
 
 Multi-drone missions are assumed to become an increasingly essential part of different industries in a diverse range of applications, such as search and rescue and transporting of goods. This evolution is intertwined with the magnified focus on the quality attributes of its communication patterns; for instance, but not limited to the assumed growing importance of secure communication with and between the drones and growing complexity of efficient communication over the infrastructure and network. This growing relevance can be highlighted in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center (a reference is needed here, no point of adding before port to latex). In this context, communication patterns refer to the structured ways in which information is exchanged among agents within the system - including drones and human operators. These patterns describe the directionality of data flow (one-to-one, one-to-many, or many-to-many communication styles) and coordination mechanisms (leader-follower, consensus-based, or peer-to-peer communication) that determine how drones share situational awareness, synchronize actions and make collaborative decisions. Understanding these patterns is crucial for evaluating system performance, scalability, efficiency and security in diverse mission contexts. Although, communication is essential, existing literature often focuses on very narrow aspect -- for example, a specific protocol, a single mission type or only one level of system architecture. This research study will aim to capture a categorization of communication patterns, data types, agent types and architectural layers across mission contexts in multi-drone deployments.
 
-\subsection{Problem Area and Research Questions}
+\subsection{\centering Problem Area and Research Questions}
 
 Multi-drone communication needs to address technical problems that are applicable to different research communities. Important considerations comprise of the types of data that need to be exchanged, the communication patterns (broadcast, one-to-one, etc.) that are best suited for the mission context, the type of agents (drones, other autonomous agents, human agents) and their respective roles, and the architecture layers wherein communication occurs.
 
@@ -64,7 +64,7 @@ Multi-drone communication needs to address technical problems that are applicabl
 
 \section{Related Work}
 
-\subsection{Relevant Reviews}
+\subsection{\centering Relevant Reviews}
 
 There have been published several studies and literary reviews on the general topic of drones. When narrowing the focus down to multi-drone missions with the specific topic of communication, the number of available research papers becomes significantly lower. Furthermore, many of the research papers focus only on drones from a certain perspective like nature disaster or agriculture which can limit their relevance.
 
@@ -74,13 +74,13 @@ Another related research performed with the topic of multi-drone mission with th
 
 \section{Research Methodology}
 
-\subsection{Planning}
+\subsection{\centering Planning}
 
 This research project will be carrying out systematic literature review following guidelines set out by Kitchenham and Charters \cite{kitchenham2007}, exploring academic databases. Grey literature will also be considered for exploration by following the Multivocal Literature Review subset of SLR approach by Garousi et al.\cite{garousi2019} because, adhering to the nature of its domain, multi-drone systems are present in both academic research and industrial practice. This process is structured and is predefined with search strategies that are focused on transparency and clear inclusion criteria, which will eliminate bias and give way to reproducibility. Furthermore, the categorization will follow the systematic mapping approach explained by Petersen et al \cite{petersen2008}. In this preliminary version of our study, the focus was primarily on peer-reviewed academic literature.
 
 Single-drone systems are not included since the project is exploring multi-drone systems. Theoretical work will be excluded. Papers that lack technical detail sufficient for categorisation and evaluation are excluded. The validity of a paper will be screened in title and abstract, then full text, then evaluated and argued for or against in team discussion. Subsequently, the mission context, communication patterns, data categories, agent types, architectural layers and reported assessment will be gleaned, then assessed for quality. The synthesized final findings for the project will be conducted following qualitative methods as set out by Petersen et al.4. The categorizations are developed iteratively. This will concretely result in distribution across categories, classification mapping patterns to contexts, common data types per layer, and agent interaction analysis.
 
-\subsection{Search and Screening}
+\subsection{\centering Search and Screening}
 
 The search terms will encompass terminology for multi-drone systems ("multi-drone", "UAV swarm", "multi-UAV", etc.) and communication ("communication pattern", "data exchange", "network architecture"). Additionally, Boolean operators were used to combine them. The final search terms and conducted technique in the project will be elaborated when preliminary documents have been acquired, similarly with the following inclusion criteria of literature: (1) involve one or two more drones, (2) describe communication with agents, (3) specify mission context, (4) specify technical details, (5) are in English and are from the last 10 years.
 
@@ -90,7 +90,7 @@ For the preliminary draft of the study, the initial search strategy was broadly 
 
 Additionally, systemic backward and forward snowballing from the papers' references was not yet implemented as a strategy, which likely led to missing studies that are useful for the final study.
 
-\subsection{Study Selection Process}
+\subsection{\centering Study Selection Process}
 
 The inclusion and exclusion criteria which formed the study selection process evolved with more knowledge gained from our initial exploratory searches. Alongside the inclusion criteria previously mentioned, the exclusion criteria included: single-drone systems; purely theoretical work without implementation or validation context; papers lacking sufficient technical detail (e.g. about communication and architecture layers) for meaningful categorisation; duplicated studies reported in multiple papers; non-peer-reviewed publications i.e. literature, although this is initially and eventually planned for inclusion.
 
@@ -104,11 +104,11 @@ There were three main phases of literature selection:
 \item \textbf{Team discussion and refinement:} All potentially included papers were discussed within the team; the collaborative review process helped address individual screening inconsistencies and resolve any edge cases. Discussion also helped to refine understanding of the ambiguous criteria, in particular, the "architecture layer" requirement as specified by the research topic.
 \end{enumerate}
 
-\subsection{Quality Assessment}
+\subsection{\centering Quality Assessment}
 
 To ensure transparency, a quality assessment checklist was defined. The quality of each paper was assessed based on relevance, clarity of method description, empirical evaluation, rigorousness and reproducibility. Each criterion was scored on 3 step scale (0-low, 1-medium, 2-high). Papers having an average score below 1.5 were excluded. Reliability was ensured by doing an independent assessment by at least two group members. Any discrepancies were later discussed until consensus was reached. The purpose of this assessment was not only to filter low-quality papers, but also to understand the strong and weak sides of each study.
 
-\subsection{Data Extraction, Synthesis and Categorisation Framework}
+\subsection{\centering Data Extraction, Synthesis and Categorisation Framework}
 
 Following the systematic mapping guidelines, we considered a data extraction framework for categorization in order to answer our research questions.
 
@@ -122,7 +122,7 @@ The categorisation maps information across five of the specified dimensions:
 \item Architectural layers
 \end{enumerate}
 
-\subsection{Validity Threats}
+\subsection{\centering Validity Threats}
 
 There are several threats to the validity of the study, especially due to the manner of process in its current preliminary form.
 
@@ -138,7 +138,7 @@ The most significant aspect of the study being in the preliminary stage means th
 
 After completing reviews and team discussions of the full papers included, there were approximately 20 papers that met the inclusion criteria and contained enough technical detail such that it could be validated and categorised. This represents the included set for the preliminary work-in-progress report. However, this is expected to change for the final draft after: full-text review of borderline cases; conducting snowballing from included papers' references; refining and reapplying the inclusion criteria in a more systematic manner; refining the search strategy with additional keyword combinations after learning more about the vocabulary in this technical field.
 
-\subsection{Multi-drone Application Domain}
+\subsection{\centering Multi-drone Application Domain}
 
 Based on a review of the selected papers, tendencies in multi-drone missions were established. The type of data being sent and received depends on the type of mission. The type of mission can also include whether the mission is time critical as mentioned in \cite{yanmaz2018}.
 
@@ -164,7 +164,7 @@ Another general term used for drone information being sent is the sensed data \c
 
 The type of multi-drone missions varies from among others construction and Search and rescue (SAR) \cite{xing2022}. The primary one being mentioned in multi-drone missions were SAR \cite{xing2022}\cite{ho2022}\cite{chandran2024}.
 
-\subsection{Communication Patterns}
+\subsection{\centering Communication Patterns}
 
 Our categorization identified the different types of communication topologies and mechanisms of coordination that are described in the literature about multi-drone systems.
 
@@ -180,7 +180,7 @@ Our categorization identified the different types of communication topologies an
 
 The preliminary observations suggest that the mission context influences pattern selection; time critical missions use more centralized patterns for rapid coordination. Longer missions prioritize distributed approaches for resilience. However, these relationships need to be validated with further systematic analysis.
 
-\subsection{Data Types and Information Exchange}
+\subsection{\centering Data Types and Information Exchange}
 
 Data exchanged in multi-drone communications was analysed and categorised.
 
@@ -196,7 +196,7 @@ Data exchanged in multi-drone communications was analysed and categorised.
 
 Data types probably correlate with both mission context and architectural layers. Telemetry is more often at high frequency through lower layers; processed mission results less so at application layers. Since our data extraction is incomplete, more systematic analysis is needed to verify this.
 
-\subsection{Agent Types and Interaction Patterns}
+\subsection{\centering Agent Types and Interaction Patterns}
 
 Multi-drone systems can have different types of agents in addition to the drones.
 
@@ -212,7 +212,7 @@ Multi-drone systems can have different types of agents in addition to the drones
 
 The early observation is that mission complexity and scale are correlated with agent diversity. Simple missions might only need a single operator for multiple drones. More complex missions have multiple agent types with specialised roles.
 
-\subsection{Architectural Layer Considerations}
+\subsection{\centering Architectural Layer Considerations}
 
 There was an initial ambiguity in the criteria definition of "architectural layer". The understanding is drawn from the papers that address communication at different abstraction levels.
 
@@ -226,7 +226,7 @@ There was an initial ambiguity in the criteria definition of "architectural laye
 
 An important preliminary finding is that multi-drone communication more often needs to be designed to be cross-layer if it is to be done effectively. Decisions at one layer e.g. application layer coordination influences requirements at other layers e.g. network routing in support of coordination patterns.
 
-\subsection{Emerging Preliminary Patterns}
+\subsection{\centering Emerging Preliminary Patterns}
 
 \textbf{Time criticality and communication:} missions with real-time requirements and that are urgent, like search and rescue, tend to have more structured communication patterns and latencies that can be more predicated. Monitoring missions that do not have this urgency have better tolerance.
 
@@ -240,7 +240,7 @@ These are preliminary findings and need a larger sample before solid conclusions
 
 \section{Discussion}
 
-\subsection{Assessment of Screening Process}
+\subsection{\centering Assessment of Screening Process}
 
 The research showed that most papers on multi-drone missions are recent since they were published within the last 10 years, which is considered a strength. Drones as well as multi-drone hardware and software are assumed to be built on rapidly growing technologies. Therefore, recent papers are more relevant and provide more accurate insight into multi-drone missions. Especially in terms of communication because software and hardware changes are assumed to have a great impact on how well communication is performed in a multi-drone mission. Older studies might take ground in outdated technologies. An accurate insight into drone security is assumed to be crucial with the fact that drones are being used in hybrid wars \cite{tv2_2025}. This could lead to the need to update the security of drone communication and networks. This could, for instance, have an impact on the data being sent or received, which would have to be encrypted.
 
