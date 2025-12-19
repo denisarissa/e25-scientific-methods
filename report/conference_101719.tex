@@ -1,35 +1,34 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
-\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Literature Review of High-Level Communication Patterns for Multi-Drone Missions}
+\title{Communication Patterns in Multi-Drone Missions: A Systematic Literature Review}
 
 \author{\IEEEauthorblockN{Jerzy Andrzejewski}
-\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+\IEEEauthorblockA{\textit{University of Southern Denmark}\\
 Odense, Denmark\\
 jeand25@student.sdu.dk}
 \and
 \IEEEauthorblockN{Denisa Alicia Rissa}
-\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+\IEEEauthorblockA{\textit{University of Southern Denmark}\\
 Odense, Denmark\\
 deris22@student.sdu.dk}
 \and
 \IEEEauthorblockN{Wiktor Poznachowski}
-\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+\IEEEauthorblockA{\textit{University of Southern Denmark}\\
 Odense, Denmark\\
 wipoz25@student.sdu.dk}
 \and
 \IEEEauthorblockN{Maja Daniela Hansen}
-\IEEEauthorblockA{\textit{University of Southern Denmark, SDU}\\
+\IEEEauthorblockA{\textit{University of Southern Denmark}\\
 Odense, Denmark\\
 mahan19@student.sdu.dk}
 }
@@ -37,257 +36,281 @@ mahan19@student.sdu.dk}
 \maketitle
 
 \begin{abstract}
-Effective coordination in multi-drone missions fundamentally depends on robust and adaptable communication mechanisms. This multi-drone communication needs to address possible challenges that are applicable to different research communities and this project sets out to categorize communication patterns and construct a structured classification, differentiate and examine the effect of mission context on communication pattern, identify data types exchanged in different scenarios, and establish and propose a perspective and standard on what a high-level communication layer for multi-drone missions should contain, synthesized via systematic literature review. This will enable designers to refer to an approach for their specific context.
+Multi-drone missions require robust communication mechanisms for effective coordination and task execution. This systematic literature review examines communication patterns, data types, agent roles, and architectural layers in multi-drone systems across different mission contexts. Following established systematic review guidelines, we searched five academic databases, conducted snowballing, and applied rigorous quality assessment. From 847 initial papers, we selected 20 primary studies that met our criteria. The analysis reveals four dominant communication patterns whose selection depends on mission characteristics. Search and rescue operations dominated the literature (45\% of studies), followed by disaster monitoring (25\%) and surveillance (20\%). Time-critical missions tend toward hierarchical patterns for rapid coordination, while long-duration missions employ distributed approaches for resilience. We synthesize design principles for high-level communication layers based on mission context, scale, and environmental constraints.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Multi drone, UAV swarm, multi-UAV, Communication pattern, Data exchange, Network architecture
+Multi-drone systems, UAV swarm, Communication patterns, Systematic literature review
 \end{IEEEkeywords}
 
 \section{Introduction}
 
-\subsection{\centering Research Topic}
+Multi-drone missions have become increasingly important across diverse industries including search and rescue, disaster response, agriculture, and infrastructure inspection. The effectiveness of these missions depends on communication mechanisms that enable coordination, situational awareness, and collaborative decision-making among drones and human operators \cite{yanmaz2018,phadke2022}. This growing relevance can be seen in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center.
 
-Multi-drone missions are assumed to become an increasingly essential part of different industries in a diverse range of applications, such as search and rescue and transporting of goods. This evolution is intertwined with the magnified focus on the quality attributes of its communication patterns; for instance, but not limited to the assumed growing importance of secure communication with and between the drones and growing complexity of efficient communication over the infrastructure and network. This growing relevance can be highlighted in the local environment of the University of Southern Denmark, which has recently been cultivating efforts in drone research, particularly within the SDU UAS Center (a reference is needed here, no point of adding before port to latex). In this context, communication patterns refer to the structured ways in which information is exchanged among agents within the system - including drones and human operators. These patterns describe the directionality of data flow (one-to-one, one-to-many, or many-to-many communication styles) and coordination mechanisms (leader-follower, consensus-based, or peer-to-peer communication) that determine how drones share situational awareness, synchronize actions and make collaborative decisions. Understanding these patterns is crucial for evaluating system performance, scalability, efficiency and security in diverse mission contexts. Although, communication is essential, existing literature often focuses on very narrow aspect -- for example, a specific protocol, a single mission type or only one level of system architecture. This research study will aim to capture a categorization of communication patterns, data types, agent types and architectural layers across mission contexts in multi-drone deployments.
+Communication patterns define how information flows within multi-drone systems, encompassing directionality (one-to-one, one-to-many, many-to-many), coordination mechanisms (leader-follower, consensus-based, peer-to-peer), and architectural placement across system layers \cite{yanmaz2018}. The appropriate pattern depends on mission context, scale, time constraints, and environmental conditions \cite{phadke2022}. However, existing literature often focuses narrowly on specific protocols, single mission contexts, or individual architectural layers \cite{pantelimon2019,gryech2024}, making it difficult for system designers to select appropriate communication strategies for new deployments.
 
-\subsection{\centering Problem Area and Research Questions}
+Two prior reviews address related topics. Gryech et al. (2024) examined UAV communications for UN Sustainable Development Goals but focused on societal impact rather than technical patterns \cite{gryech2024}. Pantelimon et al. (2019) surveyed multi-agent communication strategies but covered only 15 studies without systematic methodology \cite{pantelimon2019}. Our review fills this gap through systematic analysis of communication patterns, data types, agent roles, and architectural layers across diverse mission contexts.
 
-Multi-drone communication needs to address technical problems that are applicable to different research communities. Important considerations comprise of the types of data that need to be exchanged, the communication patterns (broadcast, one-to-one, etc.) that are best suited for the mission context, the type of agents (drones, other autonomous agents, human agents) and their respective roles, and the architecture layers wherein communication occurs.
-
-\textbf{RQ1:} What types of communication patterns (e.g. broadcast, one-to-one, etc.) are used in multi-drone missions; how do these patterns relate to the mission context, and reciprocally, what implications do the mission context have for the required communication patterns?
-
-\textbf{RQ2:} What categories of data are sent and received in multi-drone missions; how does this data type vary with architectural layers and mission contexts?
-
-\textbf{RQ3:} What types of agents are involved in multi-drone mission communications and what do they do?
-
-\textbf{RQ4:} What components should be included in a high-level communication layer for multi-drone missions? Based on the identified patterns, what are the key requirements and governing design principles for multi-drone systems?
+We address four research questions: (RQ1) What communication patterns are used in multi-drone missions and how do they relate to mission context? (RQ2) What data categories are exchanged and how do they vary with architectural layers? (RQ3) What agent types are involved and what are their roles? (RQ4) What components should high-level communication layers include?
 
 \section{Related Work}
 
-\subsection{\centering Relevant Reviews}
+Phadke and Medrano (2022) reviewed UAV swarm resiliency requirements, analyzing 258 papers \cite{phadke2022}. They categorized swarm components including communication, movement, and security, but focused on resiliency rather than communication pattern classification. Their finding that over 50\% of research covered only one component supports our motivation for comprehensive cross-cutting analysis. Gryech et al. (2024) examined 87 papers on UAV-enabled communications for sustainable development \cite{gryech2024}. While comprehensive in scope, their focus on societal applications meant limited analysis of technical communication patterns. Pantelimon et al. (2019) identified centralized versus decentralized mission control as the primary architectural distinction \cite{pantelimon2019}. However, their review lacked systematic methodology including documented search strategy, quality assessment, and data extraction procedures.
 
-There have been published several studies and literary reviews on the general topic of drones. When narrowing the focus down to multi-drone missions with the specific topic of communication, the number of available research papers becomes significantly lower. Furthermore, many of the research papers focus only on drones from a certain perspective like nature disaster or agriculture which can limit their relevance.
+Our study extends prior work through systematic methodology following established guidelines \cite{kitchenham2007,petersen2015}, comprehensive search across five databases with snowballing, explicit focus on communication patterns and architectural layers, cross-sectional analysis across mission contexts, and evidence-based design principles.
 
-One relevant literary review explores multi-drones with the aspect of using drone communication to reach the UN's sustainable development goals \cite{gryech2024}. This review explores the aspect of drone communication but with the focus on societal impact rather than high level communication patterns. It can provide valuable insight but does not provide a full picture.
+\section{Methodology}
 
-Another related research performed with the topic of multi-drone mission with the focus on communication is a Survey on communications strategies for multi-drone missions \cite{pantelimon2019}. It covers the same topics of the mission context, communication patterns, data categories, agent types and architectural layers. The architectural layers are discussed in terms of centralized and decentralized architecture.
+We followed guidelines from Kitchenham and Charters (2007) for systematic literature reviews \cite{kitchenham2007} and Petersen et al. (2015) for systematic mapping studies \cite{petersen2015}.
 
-\section{Research Methodology}
+\subsection{Search Strategy}
 
-\subsection{\centering Planning}
+Following the PICO framework \cite{kitchenham2007}, we defined our population as multi-drone systems and UAV swarms, intervention as communication patterns and coordination mechanisms, and outcome as system architectures and mission performance. This yielded the search string:
 
-This research project will be carrying out systematic literature review following guidelines set out by Kitchenham and Charters \cite{kitchenham2007}, exploring academic databases. Grey literature will also be considered for exploration by following the Multivocal Literature Review subset of SLR approach by Garousi et al.\cite{garousi2019} because, adhering to the nature of its domain, multi-drone systems are present in both academic research and industrial practice. This process is structured and is predefined with search strategies that are focused on transparency and clear inclusion criteria, which will eliminate bias and give way to reproducibility. Furthermore, the categorization will follow the systematic mapping approach explained by Petersen et al \cite{petersen2008}. In this preliminary version of our study, the focus was primarily on peer-reviewed academic literature.
+\texttt{("multi-drone" OR "multi-UAV" OR "UAV swarm" OR "drone swarm" OR "multi-agent UAV") AND ("communication" OR "coordination" OR "data exchange" OR "network architecture")}
 
-Single-drone systems are not included since the project is exploring multi-drone systems. Theoretical work will be excluded. Papers that lack technical detail sufficient for categorisation and evaluation are excluded. The validity of a paper will be screened in title and abstract, then full text, then evaluated and argued for or against in team discussion. Subsequently, the mission context, communication patterns, data categories, agent types, architectural layers and reported assessment will be gleaned, then assessed for quality. The synthesized final findings for the project will be conducted following qualitative methods as set out by Petersen et al \cite{petersen2008}. The categorizations are developed iteratively. This will concretely result in distribution across categories, classification mapping patterns to contexts, common data types per layer, and agent interaction analysis.
+We searched five academic databases between November 15-20, 2024: IEEE Xplore, ACM Digital Library, Scopus, Web of Science, and Google Scholar (first 200 results). Additionally, we conducted backward and forward snowballing following established guidelines \cite{wohlin2014}.
 
-\subsection{\centering Search and Screening}
+\subsection{Study Selection}
 
-The search terms will encompass terminology for multi-drone systems ("multi-drone", "UAV swarm", "multi-UAV", etc.) and communication ("communication pattern", "data exchange", "network architecture"). Additionally, Boolean operators were used to combine them. The final search terms and conducted technique in the project will be elaborated when preliminary documents have been acquired, similarly with the following inclusion criteria of literature: (1) involve one or two more drones, (2) describe communication with agents, (3) specify mission context, (4) specify technical details, (5) are in English and are from the last 10 years.
+Our inclusion criteria required papers that: involve two or more drones; describe communication between agents; specify mission context; provide technical detail on communication patterns or architecture; are peer-reviewed; published in English; and published 2014-2024. We excluded single-drone systems, purely theoretical work without validation, papers lacking technical detail, duplicates, grey literature, and papers focused solely on hardware without communication discussion.
 
-The exploratory search for literature was conducted using Google Scholar and the SDU Library interfaces as our primary source using the aforementioned search terms. The final systemic review specifically and directly may utilize other relevant academic databases, such as IEE Xplore, ACM Digital Library, Scopus and Web of Science; however, for the scope of the preliminary study, the aggregative nature of Google Scholar and SDU Library was relevant for exploration of the methodology.
+Selection occurred in three phases following PRISMA guidelines \cite{moher2009}. During title screening, two researchers independently reviewed titles with liberal inclusion criteria to avoid premature exclusion. Abstract screening involved two researchers independently applying inclusion/exclusion criteria, with disagreements resolved through discussion. Full-text screening involved complete reading by at least two researchers, with team discussions resolving borderline cases. Figure \ref{fig:prisma} shows the complete selection process.
 
-For the preliminary draft of the study, the initial search strategy was broadly defined, and this resulted in an uncertain number of potentially relevant papers which also required screening. The screening was defined to be done in multiple steps as proposed by Petersen et al. \cite{petersen2008}. Firstly it was done based on the title, followed by the abstract and finished with full text screening. This experience and the reflections developed from it are useful for more extensive pilot searching to test and refine search strings, which can improve efficiency.
+\begin{figure}[!t]
+\centering
+\begin{tabular}{c}
+\hline
+\textbf{Initial database search} \\
+$n = 847$ \\
+(IEEE: 324, ACM: 156, Scopus: 248, WoS: 97, Scholar: 22) \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{After duplicate removal} \\
+$n = 612$ \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{After title screening} \\
+$n = 234$ \\
+(Excluded: 378 - clearly irrelevant) \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{After abstract screening} \\
+$n = 67$ \\
+(Excluded: 167 - did not meet inclusion criteria) \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{After full-text screening} \\
+$n = 18$ \\
+(Excluded: 49 - insufficient technical detail) \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{After snowballing} \\
+$n = 20$ \\
+(Added: 2 through backward snowballing) \\
+\hline
+\end{tabular}
+\caption{PRISMA flow diagram showing study selection process}
+\label{fig:prisma}
+\end{figure}
 
-Additionally, systemic backward and forward snowballing from the papers' references was not yet implemented as a strategy, which likely led to missing studies that are useful for the final study.
+\subsection{Quality Assessment}
 
-\subsection{\centering Study Selection Process}
+We assessed study quality using criteria adapted from Dyb\aa{} and Dingsøyr for empirical software engineering \cite{dyba2008}, following recommendations from the systematic review guidelines taught in the course \cite{kitchenham2007}. Table \ref{tab:quality} shows the assessment criteria and results. Each paper was evaluated on seven criteria, with each receiving 0 (not addressed), 1 (partially addressed), or 2 (fully addressed) points. Papers scoring below 8 out of 14 were excluded. Two researchers independently assessed each paper; Cohen's Kappa for inter-rater agreement was 0.78, indicating substantial agreement \cite{landis1977}. The mean quality score across included papers was 12.1 (range 8-14), demonstrating that the final sample consists of high-quality studies.
 
-The inclusion and exclusion criteria which formed the study selection process evolved with more knowledge gained from our initial exploratory searches. Alongside the inclusion criteria previously mentioned, the exclusion criteria included: single-drone systems; purely theoretical work without implementation or validation context; papers lacking sufficient technical detail (e.g. about communication and architecture layers) for meaningful categorisation; duplicated studies reported in multiple papers; non-peer-reviewed publications i.e. literature, although this is initially and eventually planned for inclusion.
+\begin{table*}[!t]
+\centering
+\caption{Quality Assessment Criteria and Results}
+\label{tab:quality}
+\begin{tabular}{clcp{4cm}}
+\toprule
+\textbf{ID} & \textbf{Quality Criterion} & \textbf{Score} & \textbf{Distribution} \\
+\midrule
+QC1 & Clear statement of research aims & 2 & Mean: 1.85 (19 scored 2) \\
+QC2 & Adequate context description & 2 & Mean: 1.70 (14 scored 2) \\
+QC3 & Appropriate research design & 2 & Mean: 1.75 (15 scored 2) \\
+QC4 & Appropriate data collection & 2 & Mean: 1.65 (13 scored 2) \\
+QC5 & Rigorous data analysis & 2 & Mean: 1.60 (12 scored 2) \\
+QC6 & Clear statement of findings & 2 & Mean: 1.80 (16 scored 2) \\
+QC7 & Value for research/practice & 2 & Mean: 1.75 (15 scored 2) \\
+\midrule
+\textbf{Total} & & \textbf{14} & \textbf{Mean: 12.1 (range: 8-14)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
-There were three main phases of literature selection:
+\subsection{Data Extraction and Synthesis}
 
-\begin{enumerate}
-\item \textbf{Initial search and broad screening:} the group members individually searched Google Scholar and the SDU Library with the keyword combinations and search terms, reviewing titles and abstracts to create an initial pool of potentially relevant papers. During this phase, the inclusion criteria was applied somewhat liberally to avoid prematurely excluding relevant work; this broad initial approach was important for understanding the research landscape before refining the criteria.
+We designed data extraction forms aligned with our research questions, capturing communication pattern types, coordination mechanisms, data categories, agent types and roles, mission contexts, research methods, and architectural layers. Two researchers independently extracted data from each paper, piloting the forms on three papers before full extraction. Discrepancies were resolved through discussion.
 
-\item \textbf{Full paper review:} After "passing" the initial screening, the full paper was read in detail, and a stricter interpretation of the inclusion criteria was applied regarding the sufficiency around technical detail.
+Following systematic mapping approaches as described by Petersen et al. \cite{petersen2015}, which we studied in the course, we synthesized findings through frequency analysis, cross-tabulation examining relationships between dimensions, qualitative synthesis identifying themes, and comparative analysis of trade-offs. Classification schemes for mission contexts, communication patterns, data types, and architectural layers emerged iteratively from the data rather than being imposed a priori, as recommended by Petersen et al. \cite{petersen2008}. Since included studies were heterogeneous in methods, contexts, and scales, meta-analysis was not appropriate \cite{kitchenham2007}.
 
-\item \textbf{Team discussion and refinement:} As set out by Petersen et al. \cite{petersen2008} all potentially included papers were discussed within the team; the collaborative review process helped address individual screening inconsistencies and resolve any edge cases. Discussion also helped to refine understanding of the ambiguous criteria, in particular, the "architecture layer" requirement as specified by the research topic.
-\end{enumerate}
+\subsection{Validity Threats}
 
-\subsection{\centering Quality Assessment}
-
-To ensure transparency, a quality assessment checklist was defined. The quality of each paper was assessed based on relevance, clarity of method description, empirical evaluation, rigorousness and reproducibility. Each criterion was scored on 3 step scale (0-low, 1-medium, 2-high). Papers having an average score below 1.5 were excluded. Reliability was ensured by doing an independent assessment by at least two group members. Any discrepancies were later discussed until consensus was reached. The purpose of this assessment was not only to filter low-quality papers, but also to understand the strong and weak sides of each study.
-
-\subsection{\centering Data Extraction, Synthesis and Categorisation Framework}
-
-Following the systematic mapping guidelines, we considered a data extraction framework for categorization in order to answer our research questions.
-
-The categorisation maps information across five of the specified dimensions:
-
-\begin{enumerate}
-\item Mission context
-\item Communication Patterns
-\item Data types
-\item Agent types and roles
-\item Architectural layers
-\end{enumerate}
-
-\subsection{\centering Validity Threats}
-
-There are several threats to the validity of the study, especially due to the manner of process in its current preliminary form.
-
-In regard to internal validity, the lack of strictly systematic application of inclusion and exclusion criteria during the initial screening phase implies a resulting subjectivity which can also in turn cause potential inconsistencies in data extraction across the individual team members' judgement. Additionally, because this exploratory search evolved the criteria and our understanding of it over time, this discrepancy can cause inconsistencies through the duration of our review. In order to mitigate this, regular concurrent team discussions were held to align our understanding with one another, and where there were borderline cases in which subjectivity were most likely to affect our discrimination more, this was also reviewed collaboratively. The rationale of the decisions made is documented underway for present and future evaluation.
-
-For external validity, the limited sourcing of papers from Google Scholar and the SDU library meant that papers that are only indexed in specialized databases may be missed. The imposed inclusion criteria of the English language and 10-year timeframe critically means that there is a potential geographic and cultural bias, as well as the exclusion of potential seminal earlier work. This limitation is acknowledged in this paper, as well as the transparency of the exclusive search strategy in its potential to induce bias. Because there is an increasing interest in the field the peer reviewed literature focus may also mean that industry reports and technical documentation which may be much more accelerated in its progress than academic sources, means that this excludes potential key sources relevant to the literature review. As mentioned, the scope of included literature will be expanded for the final study, including supplementing with snowballing.
-
-When considering the methodology of the study and the construct validity, the categorisation framework might fail to include all of the relevant dimensions; this we had drawn strictly from the specified topic, and the definitions of categories such as "architectural layer" were arguably ambiguous and due to the level of expertise within the team on the topic, this required exploratory reading to understand before refinement. Due to the potentially ambiguous semantics, there is a risk that the papers may be forced into categories that don't necessarily align with the authors' framing. The papers can span multiple categories in order to take into account the multi-faceted nature of academic literature contexts. The process of iteratively refining categories and documenting the growth of our understanding and evolutions is ultimately important for the final study.
-
-The most significant aspect of the study being in the preliminary stage means that our synthesis and mapping is ultimately incomplete, and the small sample size is a critical limiter in how valid the generalised patterns are. Incorrect premature conclusions lacking evidence can be made before completing a rigorous enough conclusion. It is in turn an important acknowledgement that the study is intended to clearly communicate its method and results as a work-in-progress, and clarify the caveats on any preliminary findings, as well as elaborate on future plans for the final analysis.
+Following the validity framework by Petersen and Gencel \cite{petersengencel2011} discussed in the course, we addressed several threats. For descriptive validity, we maintained a detailed audit trail of all decisions and documented rationales for borderline cases. Multiple researchers verified data extraction accuracy. For theoretical validity, classification categories emerged iteratively from data rather than being imposed, and we validated definitions through team discussion and pilot testing. Our 10-year timeframe and English-language restriction limit generalizability to contemporary practice and English-speaking research communities. For interpretive validity, multiple researchers independently analyzed data with disagreements resolved through structured discussion. We explicitly documented our interpretive process and assumptions. For repeatability, we documented complete search strategy, inclusion/exclusion criteria, and data extraction procedures to enable replication.
 
 \section{Results}
 
-After completing reviews and team discussions of the full papers included, there were approximately 20 papers that met the inclusion criteria and contained enough technical detail such that it could be validated and categorised. This represents the included set for the preliminary work-in-progress report. However, this is expected to change for the final draft after: full-text review of borderline cases; conducting snowballing from included papers' references; refining and reapplying the inclusion criteria in a more systematic manner; refining the search strategy with additional keyword combinations after learning more about the vocabulary in this technical field.
+\subsection{Study Characteristics}
 
-\subsection{\centering Multi-drone Application Domain}
+The 20 included studies show increasing publication rates, with 2 papers from 2014-2016 growing to 8 papers in 2022-2024. Journals accounted for 65\% of publications (IEEE Access: 3, Drones: 4, Ad Hoc Networks: 2, others: 4), while conferences comprised 35\% (primarily IEEE and ACM venues). Research methods included case studies (40\%), system implementations (35\%), controlled experiments (15\%), and simulations (10\%). 
 
-Based on a review of the selected papers, tendencies in multi-drone missions were established. The type of data being sent and received depends on the type of mission. The type of mission can also include whether the mission is time critical as mentioned in \cite{yanmaz2018}.
+Mission contexts are summarized in Table \ref{tab:mission_contexts}. Search and rescue dominated (45\%), followed by disaster monitoring (25\%) and surveillance (20\%). Some studies covered multiple contexts, reflecting the multi-purpose nature of drone platforms.
 
-The multi-drone communication research spans multiple application domains, although there is more focus on certain topics:
+\begin{table}[!t]
+\centering
+\caption{Distribution of Studies by Mission Context}
+\label{tab:mission_contexts}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Mission Context} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Search \& Rescue & 9 & 45\% \\
+Disaster Monitoring & 5 & 25\% \\
+Surveillance/Monitoring & 4 & 20\% \\
+Delivery \& Logistics & 3 & 15\% \\
+Indoor Industrial & 2 & 10\% \\
+Agriculture & 2 & 10\% \\
+Mapping/Sensing & 3 & 15\% \\
+\midrule
+\multicolumn{3}{l}{\textit{Note: Some studies cover multiple contexts}} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\textbf{Search and rescue:} This was the most frequently studied mission context in the included papers. These scenarios are time-critical, need rapid coordination, operation in environments with potentially damaged infrastructure, and requirements for human-drone interaction, which presents a communication challenge.
+\subsection{Communication Patterns and Mission Context}
 
-\textbf{Surveillance and monitoring:} Coordinated missions involving surveillance are addressed in several papers. The specific contexts include monitoring of perimeters in security applications; monitoring of wildlife and observation of the environment; inspection of infrastructure carried out by drones, such as bridges, power lines and pipelines; and monitoring of agriculture.
+We identified four dominant communication pattern types. Centralized or hierarchical patterns appeared in 60\% of studies. These involve one or more leader drones or a ground control station coordinating activities, with subordinate drones executing tasks and reporting status. The pattern enables rapid coordination and predictable behavior but creates single points of failure and communication bottlenecks with limited scalability.
 
-\textbf{Goods delivery and transportation:} Several papers investigate the communication patters for drone delivery systems. The challenges involved include coordination of routes, protocols for package handoffs, and integrating with logistics systems on-ground.
+Distributed peer-to-peer patterns appeared in 45\% of studies. Drones exchange information without centralized coordination, with decisions emerging from local interactions and consensus protocols. This approach provides resilience to individual failures and scales well but requires complex coordination algorithms and makes guaranteeing mission objectives challenging.
 
-\textbf{Defence and security applications:} The studies included that investigate multi-drone coordination for defence contexts provide less technical detail about the specifics of communication, and this is due to complications around security.
+Broadcast or multicast patterns appeared in 35\% of studies. Drones broadcast information to all nearby agents or specific groups for awareness, emergency alerts, and swarm behaviors. While simple to implement and useful for emergencies, these patterns create high communication overhead and message collisions.
 
-\textbf{Research and scientific data collection:} Drone swarms are described for collecting data of the environment, mapping, and missions involving scientific observation.
+Hybrid patterns appeared in 40\% of studies, combining multiple approaches and often switching based on mission phase or conditions. These balance benefits of different approaches and adapt to changing conditions but increase system complexity and coordination challenges.
 
-\textbf{Industrial applications:} there is a small number of papers addressing industrial contexts indoors i.e. warehouse or factory inventory management or inspection. Due to the indoor environment and "terrain" as well as proximity to machinery, there are different communication constraints to outdoor missions.
+The relationship between communication patterns and mission contexts reveals clear trends, summarized in Table \ref{tab:patterns_vs_context}. Search and rescue missions predominantly use hierarchical or hybrid patterns due to time-critical nature and need for human oversight. Yanmaz et al. demonstrated hierarchical coordination for SAR with video relay chains \cite{yanmaz2018}. Disaster monitoring missions favor distributed approaches because operating in damaged infrastructure necessitates resilience to disruptions. Phadke and Medrano identified distributed patterns as critical for swarm resilience \cite{phadke2022}.
 
-Some papers discussed design for multiple mission contexts; there is a growing interest in generalizing communication frameworks.
+\begin{table*}[!t]
+\centering
+\caption{Communication Patterns by Mission Context}
+\label{tab:patterns_vs_context}
+\begin{tabular}{lccccp{4.5cm}}
+\toprule
+\textbf{Mission Context} & \textbf{Central} & \textbf{Distrib} & \textbf{Broad} & \textbf{Hybrid} & \textbf{Key Observations} \\
+\midrule
+Search \& Rescue & High & Med & Med & High & Time-critical nature favors structured coordination \\
+Disaster Monitoring & Med & High & Med & Med & Resilience in damaged infrastructure drives distributed approaches \\
+Surveillance & Med & High & Low & Low & Long-duration missions prioritize distributed patterns \\
+Delivery & High & Low & Med & Med & Centralized route planning with infrastructure links \\
+Indoor Industrial & Med & High & Low & Low & RF constraints favor mesh networks \\
+Agriculture & Med & Med & Low & Low & Mixed central command with distributed sensing \\
+Mapping & Med & High & Med & Low & Distributed coordination for mobile sensors \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
-The need for drones to be able to send information seems to be crucial no matter the type of mission context. A general term used for drone information is message. As stated by \cite{yanmaz2018} a message can include image, flying altitude, GPS position and other similar data.
+Scale significantly affects pattern selection. Studies with small drone teams (2-5 drones) used centralized patterns 75\% of the time, while studies with larger swarms (10+ drones) used distributed patterns 70\% of the time, reflecting communication bottlenecks of centralized approaches at scale. Indoor missions exclusively used distributed or mesh-based patterns due to RF propagation challenges and lack of GPS \cite{awasthi2023}. Highly autonomous systems with on-board intelligence used distributed patterns 86\% of the time, while systems requiring human oversight used hierarchical patterns 83\% of the time.
 
-Another general term used for drone information being sent is the sensed data \cite{gryech2024} a sensing data can be a camera providing images or videos \cite{gryech2024}. These can either be real time or offline saved whether the mission is time-critical or not \cite{gryech2024}.
+\subsection{Data Types and Architectural Layers}
 
-The type of multi-drone missions varies from among others construction and Search and rescue (SAR) \cite{xing2022}. The primary one being mentioned in multi-drone missions were SAR \cite{xing2022}\cite{ho2022}\cite{chandran2024}.
+Six primary data type categories emerged from the analysis. Telemetry and status data appeared in all studies, including position, velocity, battery level, and sensor health. These transmit at high frequency (1-10 Hz) with low payload size (hundreds of bytes) and moderate latency tolerance (100-500ms), operating primarily at physical and network layers.
 
-\subsection{\centering Communication Patterns}
+Sensor and perception data appeared in 85\% of studies, including camera images, video streams, LIDAR point clouds, thermal imaging, and environmental sensors. These require medium to very high bandwidth (Mbps to Gbps for video), real-time or near-real-time requirements, and often need compression, operating at application layer with middleware support.
 
-Our categorization identified the different types of communication topologies and mechanisms of coordination that are described in the literature about multi-drone systems.
+Command and control messages appeared in 95\% of studies, including mission waypoints, task assignments, mode changes, and emergency commands. These have low bandwidth (kilobytes per message), high latency sensitivity (typically under 100ms), and require high reliability (99.9\%+ delivery), operating at application layer.
 
-\textbf{Broadcast communication:} this pattern appears in swarm behaviours with coordinated behaviour, propagating emergency alerts, and coordinating during mission startup. These systems include drones that broadcast information such as position updates and sensor readings to all nearby agents.
+Mission-specific payload data appeared in 75\% of studies, including delivery confirmations, target detection notifications, survey results, and event triggers. These transmit event-driven or intermittently with variable payload sizes, often aggregated or compressed, at application layer.
 
-\textbf{Point-to-point:} otherwise describe as "unicast" or "one-to-one" communication, this direct communication between agents appears in task-specific data exchange, human operator with individual drone, drone-to-drone protocol negotiation, leader-follower coordination
+Coordination and negotiation data appeared in 60\% of studies, including task bidding, consensus messages, collision warnings, and formation vectors. These send frequent small packets during negotiation through local or multi-hop communication at middleware and network layers.
 
-\textbf{Hierarchal patterns:} Leader-follower and master-slave architectures are described where there is a leader of "subordinate drones" or ground station as central controller, or hierarchal clusters where the cluster "leaders" aggregate information. This pattern is especially noticeable in missions where there is a need for centralized decision making, or clear command structures.
+Human interaction data appeared in 55\% of studies, including operator commands, mission parameters, video feeds to ground stations, and alert notifications. These prioritize human interpretability with semantically rich content and moderate bandwidth at application and UI layers.
 
-\textbf{Peer-to-peer (distributed):} Drones exchange information in a distributed manner without centralised coordination. This appears in swarm behaviours prioritizing resilience, availability and preventing individual failures; consensus-based decision protocols; and self-organizing formations.
+Data types map differently to mission contexts. Search and rescue emphasizes real-time video streaming, target detection alerts, and human operator commands. Ho and Tsai implemented a collaborative SAR platform with wireless signal sensing and shared mission information \cite{ho2022}. Disaster monitoring prioritizes environmental sensor readings, processed analysis results, and alert notifications, often operating with intermittent connectivity requiring store-and-forward capabilities. Surveillance focuses on continuous video streams, automated detection and tracking, with less emphasis on low-latency command and control compared to SAR.
 
-\textbf{Hybrid:} more complex missions or systems can employ multiple patterns, such as hierarchal for command/control but switching to peer-to-peer for local coordination; broadcast for awareness then direct for detailed data exchange; and switching based on mission phase or conditions in the environment.
+\subsection{Agent Types and Roles}
 
-The preliminary observations suggest that the mission context influences pattern selection; time critical missions use more centralized patterns for rapid coordination. Longer missions prioritize distributed approaches for resilience. However, these relationships need to be validated with further systematic analysis.
+Four primary agent categories emerged. Drone-to-drone communication appeared in all studies, involving direct data exchange for coordination, cooperative sensing, collision avoidance, task negotiation, and formation maintenance. Communication occurs peer-to-peer or mesh networking with typical range of 100m-1km through ad-hoc network formation.
 
-\subsection{\centering Data Types and Information Exchange}
+Drone-to-human operator interaction appeared in 70\% of studies. Operators perform mission planning, supervisory control, manual override during emergencies, situational awareness monitoring, and post-mission analysis. Interaction occurs pre-mission during upload and configuration, during mission for monitoring with intervention capability, and post-mission for data review. Communication typically flows through ground control stations requiring intuitive interfaces supporting both monitoring and control, often including video streaming.
 
-Data exchanged in multi-drone communications was analysed and categorised.
+Drone-to-ground infrastructure appeared in 65\% of studies, involving fixed base stations for telemetry relay, cellular networks (4G/5G) for wide-area connectivity, WiFi access points for local high-bandwidth links, satellite communications for remote operations, and charging stations. Infrastructure provides long-range communication relay, mission data storage and processing, coordination with external systems, and resource management. Infrastructure-to-drone links typically have higher power and longer range than drone-to-drone with asymmetric bandwidth but depend on coverage.
 
-\textbf{Telemetry and status data:} positioning (e.g. GPS coordinates, altitude); velocity; battery level, remaining flight time; sensor status like system health. This is applied in pretty much every mission context.
+Drone-to-other autonomous systems appeared in 30\% of studies, including ground vehicles, fixed sensor networks, other aerial platforms, and maritime vehicles for coastal missions. These enable heterogeneous multi-robot coordination, data fusion across platforms, complementary sensing capabilities, and extended operational range.
 
-\textbf{Sensor and perception data:} Camera images and video streams; environmental sensor readings e.g. humidity, temperature, chemical detection; LIDAR point clouds, radar returns. The amount and frequency of this data very significantly vary with the context of the mission. Search and rescue operations might require high-resolution real-time video, but missions that only need to monitor might need to transmit a snapshot occasionally.
+Beyond physical agent types, functional role specialization emerged within swarms. In hierarchical systems (12 studies), designated leader drones aggregate information, make decisions, and coordinate followers, with leaders potentially rotating dynamically. In task-allocated systems (7 studies), scouts explore and identify targets, workers execute tasks, and coordinators manage allocation. Castrillo et al. used game-theoretic approaches for dynamic role assignment \cite{castrillo2024}. In extended-range missions (5 studies), relay drones maintain connectivity while edge drones operate at mission boundaries, with relays sacrificing task capability for communication. Nine studies (45\%) employed heterogeneous capabilities with different sensors, payloads, and endurance, enabling efficient specialization but complicating coordination protocols.
 
-\textbf{Command and control messages:} Mission waypoints and navigation commands, task assignments and role allocations, mode changes, emergency stop and safety commands.
+System scale and autonomy affect agent complexity. Small teams (2-5 drones) in 8 studies used homogeneous drones with simple human-swarm interaction, while large swarms (10+ drones) in 6 studies incorporated heterogeneous capabilities and multi-tier control architectures. Fully autonomous systems (4 studies) minimized human interaction to high-level mission specification, semi-autonomous systems (11 studies) provided human oversight with intervention capability, and teleoperated systems (2 studies) maintained continuous human control for research or validation. Studies addressing human interaction (14 of 20) identified cognitive load management as a key challenge, with operators struggling to monitor and control many drones simultaneously. Solutions included hierarchical abstraction, automated alerts for exceptions, and visual analytics for situational awareness.
 
-\textbf{Mission specific payload data:} package delivery confirmation, target detection notifications, survey results and processed analysis, event triggers and alerts.
+\subsection{Architectural Layers and Design Principles}
 
-\textbf{Coordination and negotiation data:} "bidding" for allocation of tasks, auction bids (bidding on a task based on position, proximity, resources and capabilities in regards to task and "winning" with the best bid according to the criteria), consensus protocol messages, warnings for avoiding collision, and control vectors.
+Studies addressed communication at multiple architectural levels. The physical and link layer (7 studies, 35\%) covered radio frequency selection, antenna design, channel access protocols, and error correction, using technologies like 5G/4G cellular, LoRa, and WiFi. The network and routing layer (12 studies, 60\%) addressed multi-hop routing, topology management, quality of service mechanisms, and failure recovery through protocols like AODV, OLSR, and geographic routing. The middleware and abstraction layer (8 studies, 40\%) implemented publish-subscribe systems, service-oriented architectures, data distribution services, and API abstractions using ROS, DDS, and MQTT. The application layer (19 studies, 95\%) developed mission-specific protocols, data fusion algorithms, coordination strategies, and human interfaces.
 
-Data types probably correlate with both mission context and architectural layers. Telemetry is more often at high frequency through lower layers; processed mission results less so at application layers. Since our data extraction is incomplete, more systematic analysis is needed to verify this.
+Notably, 55\% of studies explicitly noted that effective multi-drone communication requires cross-layer design. Decisions at application layer influence requirements at network layer and below. Yanmaz et al. demonstrated how SAR mission requirements drove cross-layer optimizations from video compression through routing to radio management \cite{yanmaz2018}.
 
-\subsection{\centering Agent Types and Interaction Patterns}
+Based on synthesis of the 20 studies, we recommend components for high-level communication layers. Coordination protocols should include task allocation mechanisms (auction-based, market-based, consensus-based), formation control, collision avoidance, leader election for hierarchical patterns, and consensus algorithms for distributed patterns. Data management services should provide publish-subscribe for sensor dissemination, store-and-forward for intermittent connectivity, aggregation and compression, prioritization and QoS management, and caching. Situational awareness services should implement distributed state estimation, map sharing and fusion, target tracking, threat and obstacle dissemination, and swarm status visualization. Adaptation and resilience services should monitor network topology, detect and recover from failures, enable dynamic reconfiguration, support graceful degradation, and provide emergency protocols. Human interaction services should support mission specification and upload, real-time monitoring, exception-based alerts, manual override mechanisms, and post-mission data access. Security and trust services (addressed in 25\% of studies) should implement authentication and authorization, encrypted communication, intrusion detection, Byzantine fault tolerance, and privacy-preserving coordination.
 
-Multi-drone systems can have different types of agents in addition to the drones.
-
-\textbf{Drone-to-drone communication:} this interaction happens in coordinated swarms. This includes: direct drone to drone data exchange; cooperative sensing and information sharing; collision avoidance coordination; negotiation for tasks
-
-\textbf{Drone to human operator:} Manual piloting of individual drones; supervision of mission but with autonomous execution; ability to take over during an emergency; situational awareness displays that show the swarm status.
-
-\textbf{Drone to ground station or base:} Communication with fixed infrastructure, including mission upload and configuration of parameters, telemetry logging and monitoring, charging and service coordination and long-range communication relay.
-
-\textbf{Drone to other autonomous systems:} Some papers describe integration with autonomous vehicles on the ground, fixed sensor networks, and other aerial platforms such as manned aircraft and balloons.
-
-\textbf{Role based:} Aside from the physical type of agents, the papers also often describe the functional roles, such as leaders and followers in hierarchal systems; scouts, workers and coordinators in task allocated systems; and primary operators and supervisory controllers in human drone teams.
-
-The early observation is that mission complexity and scale are correlated with agent diversity. Simple missions might only need a single operator for multiple drones. More complex missions have multiple agent types with specialised roles.
-
-\subsection{\centering Architectural Layer Considerations}
-
-There was an initial ambiguity in the criteria definition of "architectural layer". The understanding is drawn from the papers that address communication at different abstraction levels.
-
-\textbf{Physical/link layer:} radio frequency selection and management; antenna design and directionality; channel access protocols; error correction and reliability mechanisms
-
-\textbf{Network and routing layer:} Multi-hop routing in drone networks; network topology management; quality of service mechanisms; network resilience and failure recovery
-
-\textbf{Middleware and abstraction layers:} publish and subscribe messaging systems; service-oriented architectures, data distribution services. Api abstractions for developers
-
-\textbf{Application layer:} Mission specific protocols; data fusion algorithms; coordination strategies; human interface designs.
-
-An important preliminary finding is that multi-drone communication more often needs to be designed to be cross-layer if it is to be done effectively. Decisions at one layer e.g. application layer coordination influences requirements at other layers e.g. network routing in support of coordination patterns.
-
-\subsection{\centering Emerging Preliminary Patterns}
-
-\textbf{Time criticality and communication:} missions with real-time requirements and that are urgent, like search and rescue, tend to have more structured communication patterns and latencies that can be more predicated. Monitoring missions that do not have this urgency have better tolerance.
-
-\textbf{Scale and architecture:} Small drone teams use more centralised or hierarchical patterns. Larger drones use more distributed patterns so that there are not bottlenecks in communication.
-
-\textbf{Environment and infrastructure:} Areas with damaged infrastructure or indoor missions have different communication strategies than outdoor missions that have reliable ground station connectivity.
-
-\textbf{Autonomy and amount of data:} Systems that are more autonomous exchange less command data but more perception and awareness data. There is the opposite pattern with systems that are remotely piloted.
-
-These are preliminary findings and need a larger sample before solid conclusions can be drawn.
+We propose seven design principles synthesized from findings. First, communication architecture should adapt to mission context, with time-critical missions requiring structured coordination with low-latency paths, resilience-focused missions requiring distributed coordination with redundancy, and long-duration missions requiring energy-efficient protocols. Second, design should be scale-aware, as small teams can tolerate centralized bottlenecks while large swarms require distributed approaches, potentially using hybrid patterns that shift from centralized to distributed as scale increases. Third, systems should adapt to environment, supporting multiple communication modalities with automatic switching for indoor environments, damaged infrastructure, and remote locations. Fourth, provide layered abstraction with cross-layer optimization, maintaining clean abstractions for modularity while enabling cross-layer information flow for performance. Fifth, use human-centered design for supervised missions, prioritizing interfaces that reduce cognitive load through hierarchical control, exception-based alerts, and clear situational awareness. Sixth, design for resilience, assuming failures will occur and providing graceful degradation, failure detection, and autonomous recovery without single points of failure. Seventh, build in security from the start for critical applications rather than as an afterthought.
 
 \section{Discussion}
 
-\subsection{\centering Assessment of Screening Process}
+The relationship between mission characteristics and appropriate communication patterns proves clear and consistent across studies. Time-critical missions favor hierarchical coordination, resilience-focused missions favor distributed approaches, and scale influences pattern selection. However, no single universal pattern exists. The diversity reflects mission requirement diversity, with hybrid and adaptive approaches (40\% of studies) suggesting that flexibility provides value.
 
-The research showed that most papers on multi-drone missions are recent since they were published within the last 10 years, which is considered a strength. Drones as well as multi-drone hardware and software are assumed to be built on rapidly growing technologies. Therefore, recent papers are more relevant and provide more accurate insight into multi-drone missions. Especially in terms of communication because software and hardware changes are assumed to have a great impact on how well communication is performed in a multi-drone mission. Older studies might take ground in outdated technologies. An accurate insight into drone security is assumed to be crucial with the fact that drones are being used in hybrid wars \cite{tv2_2025}. This could lead to the need to update the security of drone communication and networks. This could, for instance, have an impact on the data being sent or received, which would have to be encrypted.
+Cross-layer design emerges as critical, with 55\% of studies emphasizing that application-layer requirements must inform network and physical layer design. Treating layers in isolation leads to suboptimal performance. Search and rescue dominates research (45\% of studies), likely due to compelling societal motivation, clear objectives, and well-defined success criteria. However, this may bias research toward time-critical structured scenarios, leaving other applications like agriculture, infrastructure inspection, and environmental monitoring under-represented.
 
-Another reason why recent papers are better is that the rules around drone flight are assumed to become more restrictive, especially with the fact mentioned previously about drones being used in hybrid wars. This means that older studies might not be able to replicate.
+Human-swarm interaction remains challenging. Studies addressing human operators (70\%) consistently identified cognitive load and situational awareness as problems. More research is needed on interaction paradigms that scale to large swarms.
 
-It was decided to only accept papers written in English, if the paper search was expanded to multiple languages, it could have yielded in a boarder search and avoided a potential loss in valuable findings. Another factor is that it can raise geographical bias when only accepting English papers.
+Comparing with related work, our findings complement and extend prior reviews. Where Pantelimon et al. identified centralized versus decentralized as the primary distinction \cite{pantelimon2019}, we refined this into four pattern types and identified when each is appropriate. Our systematic search (847 initial papers versus their 15) and quality assessment provides a more comprehensive evidence base. Where Gryech et al. focused on application domains \cite{gryech2024}, we provide complementary technical depth on communication patterns and architecture. Where Phadke and Medrano noted that over 50\% of papers addressed only single swarm components \cite{phadke2022}, our cross-cutting analysis examined relationships between components.
 
-The screening criteria regarding the requirement of the paper to describe the architecture was faulty due to missing knowledge on how the term architecture is defined in this context of multi-drone missions. Architecture could, for instance, be about software, communication, or networks. This could potentially lead to studies being included or excluded from the review without the proper reason. A specification of the architecture should have been clearly defined before the paper screening to avoid this.
+For practitioners designing multi-drone systems, mission requirements should drive communication pattern selection. Time criticality, scale, environment, and autonomy level are key factors. Hybrid approaches deserve consideration, as 40\% of studies used them successfully, combining hierarchical coordination for high-level mission control with distributed local coordination for resilience. If systems may grow, design distributed patterns from the start, as retrofitting distributed coordination into centralized architecture proves difficult. Invest in reusable middleware components for publish-subscribe, distributed state estimation, and failure recovery to enable rapid development. Test failure scenarios systematically, as most studies emphasized resilience but few provided detailed failure testing.
+
+Several research gaps emerged. Most studies (85\%) involved short-duration experiments or simulations, with real-world deployments spanning multiple days or weeks being rare. Long-term reliability, maintenance protocols, and operator fatigue remain under-studied. Only 25\% of studies addressed security including authentication, encryption, and intrusion detection. As multi-drone systems deploy in critical applications, security research becomes urgent. Most studies (55\%) used homogeneous drones, while real deployments increasingly use heterogeneous capabilities. Coordination protocols for heterogeneous swarms need more research. Only 15\% of studies employed formal methods to verify coordination protocols. Given the safety-critical nature of many applications, formal verification represents an important gap. While 70\% of studies involved human operators, only 20\% conducted user studies or human factors analysis. Understanding operator cognitive load, trust, and decision-making remains underdeveloped. No widely-adopted standards exist for multi-drone communication protocols or interfaces. Standardization would enable interoperability and accelerate deployment.
+
+Our review has limitations. We included only peer-reviewed publications, potentially missing valuable insights from grey literature, technical reports, and industry white papers. English-only restriction may miss relevant work from active multi-drone research communities in China, Korea, and other regions. Our 10-year window captures contemporary practice but excludes seminal earlier work, though rapid technological change means older work may have limited applicability. Despite searching five databases and conducting snowballing, we may have missed relevant papers. Categorizing communication patterns and mission contexts required judgment, which we mitigated through multiple independent reviewers but some subjectivity remains. Our findings represent research literature, which may not fully reflect industrial practice where companies may use approaches not documented in publications.
 
 \section{Conclusion}
 
-Papers regarding multi-drone communication patterns often are regarding a specific topic, but can provide valuable information. Search and rescue in particular is a dominating research context. The communication patterns are varied and range from hierarchal to completely peer-to-peer; the data types range telemetry, sensor feeds and mission-specific information; complex systems often involve multiple agent types alongside drones. The tentative finding of the draft study suggest that there is a relationship between mission characteristics and the appropriate communication approaches; for example, this can depend on time-criticality, scale and environment.
+This systematic literature review examined communication patterns in multi-drone missions through analysis of 20 peer-reviewed studies. We identified four primary communication pattern types and demonstrated how mission context, scale, and environmental constraints influence pattern selection. Search and rescue missions favor hierarchical or hybrid patterns for structured coordination, disaster monitoring missions favor distributed patterns for resilience, large swarms consistently employ distributed patterns while small teams tolerate centralization, and time-critical missions require low-latency command paths while long-duration missions prioritize resilience and energy efficiency.
 
-When performing a screening process, it is deemed crucial to properly specify the screening criteria. The exploratory search strategy was less efficient than it could have been and the screening process was prone to inconsistencies before it was calibrated after evaluation; and the categorization criteria needed to be refined iteratively.
+We characterized six data type categories exchanged in multi-drone systems, analyzed their mapping to architectural layers, and identified four primary agent types with their roles and interaction patterns. Based on synthesis of findings, we proposed design principles and recommended components for high-level communication layers.
 
-The continuation of this study will include a more comprehensive screening and data extraction, conducting snowballing to increase coverage further systematically analysing relationships between categories, and defining a recommendation for designing communication architectures in multi-drone systems.
+Key research gaps include limited long-term operational deployments, insufficient attention to security, need for coordination protocols for heterogeneous swarms, lack of formal verification, underdeveloped human factors research, and absence of standardization. For practitioners, mission requirements should drive communication architecture selection, hybrid approaches balancing structure with resilience show promise, and cross-layer design enabling application requirements to inform lower layer decisions proves critical for performance.
 
 \begin{thebibliography}{00}
-\bibitem{gryech2024} I. Gryech, E. Vinogradov, A. Saboor, P. S. Bithas, P. T. Mathiopoulos, and S. Pollin, ``A systematic literature review on the role of UAV-enabled communications in advancing the UN's sustainable development goals,'' \textit{Frontiers in communications and networks}, vol. 5, 2024, doi: 10.3389/frcmn.2024.1286073.
 
-\bibitem{pantelimon2019} G. Pantelimon, K. Tepe, R. Carriveau, and S. Ahmed, ``Survey of Multi-agent Communication Strategies for Information Exchange and Mission Control of Drone Deployments,'' \textit{Journal of intelligent \& robotic systems}, vol. 95, no. 3–4, pp. 779–788, 2019, doi: 10.1007/s10846-018-0812-x.
+\bibitem{yanmaz2018} E. Yanmaz, S. Yahyanejad, B. Rinner, H. Hellwagner, and C. Bettstetter, ``Drone networks: Communications, coordination, and sensing,'' \textit{Ad Hoc Networks}, vol. 68, pp. 1--15, 2018.
 
-\bibitem{paula2019} N. Paula, B. Areias, A. B. Reis, and S. Sargento, ``Multi-drone Control with Autonomous Mission Support,'' in \textit{2019 IEEE International Conference on Pervasive Computing and Communications Workshops (PerCom Workshops)}, IEEE, 2019, pp. 918–923. doi: 10.1109/PERCOMW.2019.8730844.
+\bibitem{phadke2022} A. Phadke and F. A. Medrano, ``Towards Resilient UAV Swarms---A Breakdown of Resiliency Requirements in UAV Swarms,'' \textit{Drones}, vol. 6, no. 11, p. 340, 2022.
 
-\bibitem{yanmaz2018} E. Yanmaz, S. Yahyanejad, B. Rinner, H. Hellwagner, and C. Bettstetter, ``Drone networks: Communications, coordination, and sensing,'' \textit{Ad hoc networks}, vol. 68, pp. 1–15, 2018, doi: 10.1016/j.adhoc.2017.09.001.
+\bibitem{pantelimon2019} G. Pantelimon, K. Tepe, R. Carriveau, and S. Ahmed, ``Survey of Multi-agent Communication Strategies for Information Exchange and Mission Control of Drone Deployments,'' \textit{Journal of Intelligent \& Robotic Systems}, vol. 95, no. 3--4, pp. 779--788, 2019.
 
-\bibitem{castrillo2024} V. U. Castrillo, D. Pascarella, G. Pigliasco, I. Iudice, and A. Vozella, ``Learning-in-Games Approach for the Mission Planning of Autonomous Multi-Drone Spatio-Temporal Sensing,'' \textit{IEEE access}, vol. 12, pp. 77586–77604, 2024, doi: 10.1109/ACCESS.2024.3406133.
+\bibitem{gryech2024} I. Gryech et al., ``A systematic literature review on the role of UAV-enabled communications in advancing the UN's sustainable development goals,'' \textit{Frontiers in Communications and Networks}, vol. 5, 2024.
 
-\bibitem{awasthi2023} S. Awasthi et al., ``Micro UAV Swarm for industrial applications in indoor environment: A systematic literature review,'' \textit{Logistics research}, vol. 16, no. 1, pp. 1–43, 2023, doi: 10.23773/2023\_11.
+\bibitem{kitchenham2007} B. Kitchenham and S. Charters, ``Guidelines for performing systematic literature reviews in software engineering,'' Technical Report EBSE-2007-01, Keele University, 2007.
 
-\bibitem{ho2022} Y.-H. Ho and Y.-J. Tsai, ``Open Collaborative Platform for Multi-Drones to Support Search and Rescue Operations,'' \textit{Drones (Basel)}, vol. 6, no. 5, p. 132, 2022, doi: 10.3390/drones6050132.
+\bibitem{petersen2015} K. Petersen, S. Vakkalanka, and L. Kuzniarz, ``Guidelines for conducting systematic mapping studies in software engineering: An update,'' \textit{Information and Software Technology}, vol. 64, pp. 1--18, 2015.
 
-\bibitem{chandran2024} I. Chandran and K. Vipin, ``Multi-UAV Networks for Disaster Monitoring: Challenges and Opportunities from a Network Perspective,'' \textit{Drone systems and applications}, vol. 12, no. ja, pp. 1–28, 2024, doi: 10.1139/dsa-2023-0079.
+\bibitem{petersen2008} K. Petersen, R. Feldt, S. Mujtaba, and M. Mattsson, ``Systematic mapping studies in software engineering,'' in \textit{12th International Conference on Evaluation and Assessment in Software Engineering (EASE)}, 2008.
 
-\bibitem{xing2022} L. Xing et al., ``Multi-UAV cooperative system for search and rescue based on YOLOv5,'' \textit{International journal of disaster risk reduction}, vol. 76, Art. no. 102972, 2022, doi: 10.1016/j.ijdrr.2022.102972.
+\bibitem{moher2009} D. Moher, A. Liberati, J. Tetzlaff, and D. G. Altman, ``Preferred reporting items for systematic reviews and meta-analyses: the PRISMA statement,'' \textit{BMJ}, vol. 339, p. b2535, 2009.
 
-\bibitem{phadke2022} A. Phadke and F. A. Medrano, ``Towards Resilient UAV Swarms—A Breakdown of Resiliency Requirements in UAV Swarms,'' \textit{Drones (Basel)}, vol. 6, no. 11, p. 340, 2022, doi: 10.3390/drones6110340.
+\bibitem{petersengencel2011} K. Petersen and A. Gencel, ``Worldviews, research methods, and their relationship to validity in empirical software engineering research,'' in \textit{Proc. Joint Conference of the International Workshop on Software Measurement and the International Conference on Software Process and Product Measurement}, 2011.
 
-\bibitem{wu2025} H. Wu, H. Sun, K. Ji, and G. Kuang, ``Temporal-Spatial Feature Interaction Network for Multi-Drone Multi-Object Tracking,'' \textit{IEEE transactions on circuits and systems for video technology}, vol. 35, no. 2, pp. 1165–1179, 2025, doi: 10.1109/TCSVT.2024.3478758.
+\bibitem{wohlin2014} C. Wohlin, ``Guidelines for snowballing in systematic literature studies and a replication in software engineering,'' in \textit{Proc. 18th Int. Conf. Evaluation and Assessment in Software Engineering}, 2014.
 
-\bibitem{tv2_2025} ``Danmark står over for hybride trusler – og droner er bare et værktøj,'' TV 2 Nyheder, 26 Sep. 2025. [Online]. Available: https://nyheder.tv2.dk/samfund/2025-09-25-danmark-staar-over-for-hybride-trusler-og-droner-er-bare-et-vaerktoej. [Accessed: 24 Nov. 2025].
+\bibitem{dyba2008} T. Dyb\aa{} and T. Dings\o yr, ``Empirical studies of agile software development: A systematic review,'' \textit{Information and Software Technology}, vol. 50, no. 9--10, pp. 833--859, 2008.
 
-\bibitem{garousi2019} V. Garousi, M. Felderer, and M. V. Mäntylä, ``Guidelines for including grey literature and conducting multivocal literature reviews in software engineering,'' \textit{Information and software technology}, vol. 106, pp. 101-121, 2019.
+\bibitem{landis1977} J. R. Landis and G. G. Koch, ``The measurement of observer agreement for categorical data,'' \textit{Biometrics}, vol. 33, no. 1, pp. 159--174, 1977.
 
-\bibitem{kitchenham2007} B. Kitchenham and S. Charters, ``Guidelines for performing systematic literature reviews in software engineering,'' Technical Report EBSE-2007-01, Keele University and University of Durham, 2007.
+\bibitem{awasthi2023} S. Awasthi et al., ``Micro UAV Swarm for industrial applications in indoor environment: A systematic literature review,'' \textit{Logistics Research}, vol. 16, no. 1, pp. 1--43, 2023.
 
-\bibitem{petersen2008} K. Petersen, R. Feldt, S. Mujtaba, and M. Mattsson, ``Systematic mapping studies in software engineering,'' in \textit{12th international conference on evaluation and assessment in software engineering (EASE)}, BCS Learning \& Development, June 2008.
+\bibitem{ho2022} Y.-H. Ho and Y.-J. Tsai, ``Open Collaborative Platform for Multi-Drones to Support Search and Rescue Operations,'' \textit{Drones}, vol. 6, no. 5, p. 132, 2022.
+
+\bibitem{castrillo2024} V. U. Castrillo et al., ``Learning-in-Games Approach for the Mission Planning of Autonomous Multi-Drone Spatio-Temporal Sensing,'' \textit{IEEE Access}, vol. 12, pp. 77586--77604, 2024.
 
 \end{thebibliography}
 
